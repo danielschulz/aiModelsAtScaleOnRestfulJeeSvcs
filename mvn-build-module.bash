@@ -12,3 +12,4 @@ mvn \
     -DartifactId=aiModelsAtScaleOnRestfulJeeSvcs \
     -Dversion=0.0.1 \
     -DarchetypeVersion=2.27
+
