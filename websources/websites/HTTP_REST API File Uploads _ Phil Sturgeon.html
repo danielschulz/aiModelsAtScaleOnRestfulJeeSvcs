@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)https://philsturgeon.uk/api/2016/01/04/http-rest-api-file-uploads/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <!-- (1) Optimize for mobile versions: http://goo.gl/EOpFl -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- (1) force latest IE rendering engine: bit.ly/1c8EiC9 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>HTTP/REST API File Uploads | Phil Sturgeon</title>
+  <meta name="description" content="Platform Engineer @ WeWork who talks about APIs a lot. Programming Polyglot, Pragmatist, Centerist and Sarcasist. Ex-The League of Extraordinary Packages, PHP The Right Way, Ex-PHP-FIG, Ex-CodeIgniter, Ex-FuelPHP, Ex-PyroCMS.">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <div class="fit-vids-style" id="fit-vids-style" style="display: none;">­<style>.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></div><script async="" src="./HTTP_REST API File Uploads _ Phil Sturgeon_files/analytics.js.download"></script><script src="./HTTP_REST API File Uploads _ Phil Sturgeon_files/-Rrsk9gYOwN7Mff16jWzLUK9Qdo.js.download"></script><link rel="stylesheet" href="data:text/css;charset=utf-8;base64,LmNmLXR0LWVsZW1lbnQsCi5jZi10dC1lbGVtZW50OmFmdGVyLAouY2YtdHQtZWxlbWVudDpiZWZvcmUsCi5jZi10dC1lbGVtZW50ICosCi5jZi10dC1lbGVtZW50IDphZnRlciwKLmNmLXR0LWVsZW1lbnQgOmJlZm9yZSB7CiAgYm94LXNpemluZzogYm9yZGVyLWJveDsKfQoKLmNmLXR0LWVsZW1lbnQgewogIHBvc2l0aW9uOiBhYnNvbHV0ZTsKICBkaXNwbGF5OiBub25lOwp9CgouY2YtdHQtZWxlbWVudC5jZi10dC1vcGVuIHsKICBkaXNwbGF5OiBibG9jazsKICB6LWluZGV4OiAxMDAwMDA7Cn0KCi5jZi10dC1lbGVtZW50IHsKICBtYXgtd2lkdGg6IDEwMCU7CiAgbWF4LWhlaWdodDogMTAwJTsKfQoKLmNmLXR0LWVsZW1lbnQgLmNmLXR0LWNvbnRlbnQgewogIGJhY2tncm91bmQ6ICMwMDA7CiAgYm9yZGVyLXJhZGl1czogNXB4OwogIGNvbG9yOiAjZWVlOwogIGZvbnQtZmFtaWx5OiBpbmhlcml0OwogIGZvbnQtd2VpZ2h0OiBub3JtYWw7CiAgZm9udC1zaXplOiAxLjFlbTsKICBsaW5lLWhlaWdodDogMS41OwogIHBhZGRpbmc6IC41ZW0gMWVtOwogIHBvc2l0aW9uOiByZWxhdGl2ZTsKICB0ZXh0LWRlY29yYXRpb246IG5vbmU7Cn0KCi5jZi10dC1lbGVtZW50IC5jZi10dC1jb250ZW50OmJlZm9yZSB7CiAgY29udGVudDogIiI7CiAgZGlzcGxheTogYmxvY2s7CiAgcG9zaXRpb246IGFic29sdXRlOwogIHdpZHRoOiAwOwogIGhlaWdodDogMDsKICBib3JkZXItY29sb3I6IHRyYW5zcGFyZW50OwogIGJvcmRlci13aWR0aDogOHB4OwogIGJvcmRlci1zdHlsZTogc29saWQ7Cn0KCi5jZi10dC1lbGVtZW50LmNmLXR0LWVsZW1lbnQtYXR0YWNoZWQtYm90dG9tLmNmLXR0LWVsZW1lbnQtYXR0YWNoZWQtY2VudGVyIC5jZi10dC1jb250ZW50IHsKICBtYXJnaW4tYm90dG9tOiA4cHg7Cn0KCi5jZi10dC1lbGVtZW50LmNmLXR0LWVsZW1lbnQtYXR0YWNoZWQtYm90dG9tLmNmLXR0LWVsZW1lbnQtYXR0YWNoZWQtY2VudGVyIC5jZi10dC1jb250ZW50OmJlZm9yZSB7CiAgdG9wOiAxMDAlOwogIGxlZnQ6IDUwJTsKICBtYXJnaW4tbGVmdDogLThweDsKICBib3JkZXItdG9wLWNvbG9yOiAjMDAwOwp9CgouY2YtdHQtZWxlbWVudC5jZi10dC1lbGVtZW50LWF0dGFjaGVkLXRvcC5jZi10dC1lbGVtZW50LWF0dGFjaGVkLWNlbnRlciAuY2YtdHQtY29udGVudCB7CiAgbWFyZ2luLXRvcDogOHB4Owp9CgouY2YtdHQtZWxlbWVudC5jZi10dC1lbGVtZW50LWF0dGFjaGVkLXRvcC5jZi10dC1lbGVtZW50LWF0dGFjaGVkLWNlbnRlciAuY2YtdHQtY29udGVudDpiZWZvcmUgewogIGJvdHRvbTogMTAwJTsKICBsZWZ0OiA1MCU7CiAgbWFyZ2luLWxlZnQ6IC04cHg7CiAgYm9yZGVyLWJvdHRvbS1jb2xvcjogIzAwMDsKfQoKLmNmLXR0LWVsZW1lbnQuY2YtdHQtZWxlbWVudC1hdHRhY2hlZC1yaWdodC5jZi10dC1lbGVtZW50LWF0dGFjaGVkLW1pZGRsZSAuY2YtdHQtY29udGVudCB7CiAgbWFyZ2luLXJpZ2h0OiA4cHg7Cn0KCi5jZi10dC1lbGVtZW50LmNmLXR0LWVsZW1lbnQtYXR0YWNoZWQtcmlnaHQuY2YtdHQtZWxlbWVudC1hdHRhY2hlZC1taWRkbGUgLmNmLXR0LWNvbnRlbnQ6YmVmb3JlIHsKICBsZWZ0OiAxMDAlOwogIHRvcDogNTAlOwogIG1hcmdpbi10b3A6IC04cHg7CiAgYm9yZGVyLWxlZnQtY29sb3I6ICMwMDA7Cn0KCi5jZi10dC1lbGVtZW50LmNmLXR0LWVsZW1lbnQtYXR0YWNoZWQtbGVmdC5jZi10dC1lbGVtZW50LWF0dGFjaGVkLW1pZGRsZSAuY2YtdHQtY29udGVudCB7CiAgbWFyZ2luLWxlZnQ6IDhweDsKfQoKLmNmLXR0LWVsZW1lbnQuY2YtdHQtZWxlbWVudC1hdHRhY2hlZC1sZWZ0LmNmLXR0LWVsZW1lbnQtYXR0YWNoZWQtbWlkZGxlIC5jZi10dC1jb250ZW50OmJlZm9yZSB7CiAgcmlnaHQ6IDEwMCU7CiAgdG9wOiA1MCU7CiAgbWFyZ2luLXRvcDogLThweDsKICBib3JkZXItcmlnaHQtY29sb3I6ICMwMDA7Cn0KCi5jZi10dC1lbGVtZW50LmNmLXR0LWVsZW1lbnQtYXR0YWNoZWQtdG9wLmNmLXR0LWVsZW1lbnQtYXR0YWNoZWQtbGVmdC5jZi10dC10YXJnZXQtYXR0YWNoZWQtYm90dG9tIC5jZi10dC1jb250ZW50IHsKICBtYXJnaW4tdG9wOiA4cHg7Cn0KCi5jZi10dC1lbGVtZW50LmNmLXR0LWVsZW1lbnQtYXR0YWNoZWQtdG9wLmNmLXR0LWVsZW1lbnQtYXR0YWNoZWQtbGVmdC5jZi10dC10YXJnZXQtYXR0YWNoZWQtYm90dG9tIC5jZi10dC1jb250ZW50OmJlZm9yZSB7CiAgYm90dG9tOiAxMDAlOwogIGxlZnQ6IDhweDsKICBib3JkZXItYm90dG9tLWNvbG9yOiAjMDAwOwp9CgouY2YtdHQtZWxlbWVudC5jZi10dC1lbGVtZW50LWF0dGFjaGVkLXRvcC5jZi10dC1lbGVtZW50LWF0dGFjaGVkLXJpZ2h0LmNmLXR0LXRhcmdldC1hdHRhY2hlZC1ib3R0b20gLmNmLXR0LWNvbnRlbnQgewogIG1hcmdpbi10b3A6IDhweDsKfQoKLmNmLXR0LWVsZW1lbnQuY2YtdHQtZWxlbWVudC1hdHRhY2hlZC10b3AuY2YtdHQtZWxlbWVudC1hdHRhY2hlZC1yaWdodC5jZi10dC10YXJnZXQtYXR0YWNoZWQtYm90dG9tIC5jZi10dC1jb250ZW50OmJlZm9yZSB7CiAgYm90dG9tOiAxMDAlOwogIHJpZ2h0OiA4cHg7CiAgYm9yZGVyLWJvdHRvbS1jb2xvcjogIzAwMDsKfQoKLmNmLXR0LWVsZW1lbnQuY2YtdHQtZWxlbWVudC1hdHRhY2hlZC1ib3R0b20uY2YtdHQtZWxlbWVudC1hdHRhY2hlZC1sZWZ0LmNmLXR0LXRhcmdldC1hdHRhY2hlZC10b3AgLmNmLXR0LWNvbnRlbnQgewogIG1hcmdpbi1ib3R0b206IDhweDsKfQoKLmNmLXR0LWVsZW1lbnQuY2YtdHQtZWxlbWVudC1hdHRhY2hlZC1ib3R0b20uY2YtdHQtZWxlbWVudC1hdHRhY2hlZC1sZWZ0LmNmLXR0LXRhcmdldC1hdHRhY2hlZC10b3AgLmNmLXR0LWNvbnRlbnQ6YmVmb3JlIHsKICB0b3A6IDEwMCU7CiAgbGVmdDogOHB4OwogIGJvcmRlci10b3AtY29sb3I6ICMwMDA7Cn0KCi5jZi10dC1lbGVtZW50LmNmLXR0LWVsZW1lbnQtYXR0YWNoZWQtYm90dG9tLmNmLXR0LWVsZW1lbnQtYXR0YWNoZWQtcmlnaHQuY2YtdHQtdGFyZ2V0LWF0dGFjaGVkLXRvcCAuY2YtdHQtY29udGVudCB7CiAgbWFyZ2luLWJvdHRvbTogOHB4Owp9CgouY2YtdHQtZWxlbWVudC5jZi10dC1lbGVtZW50LWF0dGFjaGVkLWJvdHRvbS5jZi10dC1lbGVtZW50LWF0dGFjaGVkLXJpZ2h0LmNmLXR0LXRhcmdldC1hdHRhY2hlZC10b3AgLmNmLXR0LWNvbnRlbnQ6YmVmb3JlIHsKICB0b3A6IDEwMCU7CiAgcmlnaHQ6IDhweDsKICBib3JkZXItdG9wLWNvbG9yOiAjMDAwOwp9CgouY2YtdHQtZWxlbWVudC5jZi10dC1lbGVtZW50LWF0dGFjaGVkLXRvcC5jZi10dC1lbGVtZW50LWF0dGFjaGVkLXJpZ2h0LmNmLXR0LXRhcmdldC1hdHRhY2hlZC1sZWZ0IC5jZi10dC1jb250ZW50IHsKICBtYXJnaW4tcmlnaHQ6IDhweDsKfQoKLmNmLXR0LWVsZW1lbnQuY2YtdHQtZWxlbWVudC1hdHRhY2hlZC10b3AuY2YtdHQtZWxlbWVudC1hdHRhY2hlZC1yaWdodC5jZi10dC10YXJnZXQtYXR0YWNoZWQtbGVmdCAuY2YtdHQtY29udGVudDpiZWZvcmUgewogIHRvcDogOHB4OwogIGxlZnQ6IDEwMCU7CiAgYm9yZGVyLWxlZnQtY29sb3I6ICMwMDA7Cn0KCi5jZi10dC1lbGVtZW50LmNmLXR0LWVsZW1lbnQtYXR0YWNoZWQtdG9wLmNmLXR0LWVsZW1lbnQtYXR0YWNoZWQtbGVmdC5jZi10dC10YXJnZXQtYXR0YWNoZWQtcmlnaHQgLmNmLXR0LWNvbnRlbnQgewogIG1hcmdpbi1sZWZ0OiA4cHg7Cn0KCi5jZi10dC1lbGVtZW50LmNmLXR0LWVsZW1lbnQtYXR0YWNoZWQtdG9wLmNmLXR0LWVsZW1lbnQtYXR0YWNoZWQtbGVmdC5jZi10dC10YXJnZXQtYXR0YWNoZWQtcmlnaHQgLmNmLXR0LWNvbnRlbnQ6YmVmb3JlIHsKICB0b3A6IDhweDsKICByaWdodDogMTAwJTsKICBib3JkZXItcmlnaHQtY29sb3I6ICMwMDA7Cn0KCi5jZi10dC1lbGVtZW50LmNmLXR0LWVsZW1lbnQtYXR0YWNoZWQtYm90dG9tLmNmLXR0LWVsZW1lbnQtYXR0YWNoZWQtcmlnaHQuY2YtdHQtdGFyZ2V0LWF0dGFjaGVkLWxlZnQgLmNmLXR0LWNvbnRlbnQgewogIG1hcmdpbi1yaWdodDogOHB4Owp9CgouY2YtdHQtZWxlbWVudC5jZi10dC1lbGVtZW50LWF0dGFjaGVkLWJvdHRvbS5jZi10dC1lbGVtZW50LWF0dGFjaGVkLXJpZ2h0LmNmLXR0LXRhcmdldC1hdHRhY2hlZC1sZWZ0IC5jZi10dC1jb250ZW50OmJlZm9yZSB7CiAgYm90dG9tOiA4cHg7CiAgbGVmdDogMTAwJTsKICBib3JkZXItbGVmdC1jb2xvcjogIzAwMDsKfQoKLmNmLXR0LWVsZW1lbnQuY2YtdHQtZWxlbWVudC1hdHRhY2hlZC1ib3R0b20uY2YtdHQtZWxlbWVudC1hdHRhY2hlZC1sZWZ0LmNmLXR0LXRhcmdldC1hdHRhY2hlZC1yaWdodCAuY2YtdHQtY29udGVudCB7CiAgbWFyZ2luLWxlZnQ6IDhweDsKfQoKLmNmLXR0LWVsZW1lbnQuY2YtdHQtZWxlbWVudC1hdHRhY2hlZC1ib3R0b20uY2YtdHQtZWxlbWVudC1hdHRhY2hlZC1sZWZ0LmNmLXR0LXRhcmdldC1hdHRhY2hlZC1yaWdodCAuY2YtdHQtY29udGVudDpiZWZvcmUgewogIGJvdHRvbTogOHB4OwogIHJpZ2h0OiAxMDAlOwogIGJvcmRlci1yaWdodC1jb2xvcjogIzAwMDsKfQoK"><script src="./HTTP_REST API File Uploads _ Phil Sturgeon_files/R5ZFTDU5hEMLLh2BxuB1uAU-mF4.js.download"></script><link rel="stylesheet" href="./HTTP_REST API File Uploads _ Phil Sturgeon_files/Open+Sans_400,400i,700,700i">
+  <link href="./HTTP_REST API File Uploads _ Phil Sturgeon_files/font-awesome.min.css" rel="stylesheet">
+
+  <link href="./HTTP_REST API File Uploads _ Phil Sturgeon_files/main.css" rel="stylesheet" media="screen">
+  <link href="./HTTP_REST API File Uploads _ Phil Sturgeon_files/print.css" rel="stylesheet" media="print">
+  <link href="https://philsturgeon.uk/images/favicon.jpg" rel="icon" type="image/jpg">
+
+  <meta property="og:title" content="HTTP/REST API File Uploads">
+  <meta property="og:type" content="article">
+  <meta property="article:author" content="Phil Sturgeon">
+  <meta property="og:description" content="File uploads are one thing that always feel rather complicated, and working out how to handle this in an API doesn&#39;t make life easier. For many programmers, this has been abstracted away behind the HTTP standard, HTML and convenient features in languages like PHP, that populate a $_FILES array for us to play with. This is not really how it works for an API.">
+  <meta property="og:site_name" content="Phil Sturgeon">
+  <meta property="og:image" content="https://philsturgeon.uk/images/author.jpg">
+  <meta property="og:url" content="https://philsturgeon.uk/api/2016/01/04/http-rest-api-file-uploads/">
+  <meta property="og:locale" content="en_GB">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@philsturgeon">
+  <meta name="twitter:title" content="HTTP/REST API File Uploads | Phil Sturgeon">
+  <meta name="twitter:image:src" content="https://philsturgeon.uk/images/author.jpg">
+  <meta name="twitter:url" content="https://philsturgeon.uk/api/2016/01/04/http-rest-api-file-uploads/">
+  <meta name="twitter:description" content="File uploads are one thing that always feel rather complicated, and working out how to handle this in an API doesn&#39;t make life easier. For many programmers, this has been abstracted away behind the HTTP standard, HTML and convenient features in languages like PHP, that populate a $_FILES array for us to play with. This is not really how it works for an API.">
+  <meta name="twitter:creator" content="@philsturgeon">
+
+  <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://philsturgeon.uk/feed.xml">
+<style type="text/css">:root a[href^="http://www.drowle.com/"], :root #header + #content > #left > #rlblock_left, :root #\5f _mom_ad_2, :root #rhs_block .mod > .luhb-div > div[data-async-type="updateHotelBookingModule"], :root #\5f _admvnlb_modal_container, :root a[href^="http://keep2share.cc/pr/"], :root #MAIN.ShowTopic > .ad, :root #\5f _mom_ad_12, :root #center_col > #main > .dfrd > .mnr-c > .c._oc._zs, :root a[href^="https://t.mobtya.com/"], :root [id*="MGWrap"], :root aside[itemtype="https://schema.org/WPAdBlock"], :root .__y_elastic .__y_item, :root a[href^="http://ul.to/ref/"], :root #\5f _nq__hh[style="display:block!important"], :root a[href^="http://ads.pheedo.com/"], :root a[href^="http://landingpagegenius.com/"], :root aside[id^="advads_ad_widget-"], :root .inlineNewsletterSubscription + .inlineNewsletterSubscription div[class$="_item"], :root #ads > .dose > .dosesingle, :root a[href^="http://lp.ncdownloader.com/"], :root a[href^="http://www.getyourguide.com/?partner_id="], :root a[href^="http://media.paddypower.com/redirect.aspx?"], :root a[href^="http://www.adskeeper.co.uk/"], :root #assetsListings[style="display: block;"], :root a[href^="http://b.bestcompleteusa.info/"], :root #main-content > [style="padding:10px 0 0 0 !important;"], :root #center_col > #\5f Emc, :root a[href^="http://easydownload4you.com/"], :root a[href^="http://secure.signup-way.com/"], :root #center_col > #res > #topstuff + #search > div > #ires > #rso > #flun, :root a[href^="http://cdn3.adexprts.com/"], :root a[href^="http://web.adblade.com/"], :root a[href^="http://www.affbuzzads.com/affiliate/"], :root #center_col > #resultStats + #tads, :root #center_col > #resultStats + #tads + #res + #tads, :root a[href^="http://track.trkvluum.com/"], :root #cnt #center_col > #taw > #tvcap > .c._oc._Lp, :root a[href^="http://codec.codecm.com/"], :root #center_col > #resultStats + div + #res + #tads, :root div[id^="div-gpt-ad"], :root #center_col > #resultStats + div[style="border:1px solid #dedede;margin-bottom:11px;padding:5px 7px 5px 6px"], :root a[href^="http://liversely.com/"], :root #topstuff > #tads, :root a[href*="5iclx7wa4q.com"], :root #center_col > #taw > #tvcap > .rscontainer, :root a[href^="http://www.bet365.com/"][href*="?affiliate="], :root #center_col > div[style="font-size:14px;margin-right:0;min-height:5px"] > div[style="font-size:14px;margin:0 4px;padding:1px 5px;background:#fff8e7"], :root a[href^="http://fileloadr.com/"], :root .gbfwa > div[class$="_item"], :root div[id^="ad_script_"], :root a[href^="http://www.friendlyadvertisements.com/"], :root #cnt #center_col > #res > #topstuff > .ts, :root #mn div[style="position:relative"] > #center_col > ._Ak, :root a[href^="http://affiliates.pinnaclesports.com/processing/"], :root a[href*=".clksite.com/"], :root #content > #center > .dose > .dosesingle, :root #content > #right > .dose > .dosesingle, :root a[href^="http://buysellads.com/"], :root a[href^="http://fsoft4down.com/"], :root #flowplayer > div[style="position: absolute; width: 300px; height: 275px; left: 222.5px; top: 85px; z-index: 999;"], :root #mn #center_col > div > h2.spon:first-child + ol:last-child, :root a[href^="http://www.easydownloadnow.com/"], :root a[href*="emprestimo.eu"], :root a[href^="http://n217adserv.com/"], :root .rc-cta[data-target], :root div[id^="ads120_600-widget"], :root #flowplayer > div[style="z-index: 208; position: absolute; width: 300px; height: 275px; left: 222.5px; top: 85px;"], :root a[href^="http://c.ketads.com/"], :root .GB3L-QEDGY .GB3L-QEDF- > .GB3L-QEDE-, :root #main_col > #center_col div[style="font-size:14px;margin:0 4px;padding:1px 5px;background:#fff7ed"], :root a[href^="http://www.usearchmedia.com/signup?"], :root .__zinit .__y_item, :root a[href^="http://banners.victor.com/processing/"], :root #mbEnd[cellspacing="0"][cellpadding="0"], :root a[href^="http://ads.sprintrade.com/"], :root #mn #center_col > div > h2.spon:first-child, :root #rhs_block > .ts[cellspacing="0"][cellpadding="0"][style="padding:0"], :root a[href^="http://farm.plista.com/pets"], :root .__yinit .__y_item, :root #mn div[style="position:relative"] > #center_col > div > ._dPg, :root a[href^="https://www.firstload.com/affiliate/"], :root #resultspanel > #topads, :root #rhs_block > #mbEnd, :root a[href^="http://www.faceporn.net/free?"], :root a[href^="http://uploaded.net/ref/"], :root #rhs_block .mod > .gws-local-hotels__booking-module, :root a[href^="http://jobitem.org/"], :root a[href^="http://www.fbooksluts.com/"], :root #rhs_block .xpdopen > ._OKe > div > .mod > ._yYf, :root #rhs_block > ol > .rhsvw > .kp-blk > .xpdopen > ._OKe > ol > ._DJe > .luhb-div, :root a[href^="http://www.moneyducks.com/"], :root .trc_rbox_div .syndicatedItem, :root a[href^="http://websitedhoome.com/"], :root .mw > #rcnt > #center_col > #taw > #tvcap > .c, :root a[href^="http://ad.yieldmanager.com/"], :root .lads[width="100%"][style="background:#FFF8DD"], :root a[href^="http://taboola-"][href*="/redirect.php?app.type="], :root #rhs_block > script + .c._oc._Ve.rhsvw, :root #tads + div + .c, :root a[href^="http://www.uniblue.com/cm/"], :root a[href^="https://mk-ads.com/"], :root #rhswrapper > #rhssection[border="0"][bgcolor="#ffffff"], :root a[href^="http://ads.betfair.com/redirect.aspx?"], :root #ssmiwdiv[jsdisplay], :root a[href^="http://adserver.itsfogo.com/"], :root .__ywl .__y_item, :root .GFYY1SVD2 > .GFYY1SVC2 > .GFYY1SVF5, :root a[href^="http://9nl.es/"], :root a[href^="http://ads.activtrades.com/"], :root .GHOFUQ5BG2 > .GHOFUQ5BF2 > .GHOFUQ5BG5, :root div[id^="mainads"], :root .GFYY1SVE2 > .GFYY1SVD2 > .GFYY1SVG5, :root .jobs-information-call-to-action + .jobs-information-call-to-action div[class$="_item"], :root .GJJKPX2N1 > .GJJKPX2M1 > .GJJKPX2P4, :root a[href^="http://clickandjoinyourgirl.com/"], :root a[href^="http://www.terraclicks.com/"], :root a[href^="http://go.oclaserver.com/"], :root a[href^="http://paid.outbrain.com/network/redir?"], :root .GKJYXHBF2 > .GKJYXHBE2 > .GKJYXHBH5, :root .GPMV2XEDA2 > .GPMV2XEDP1 > .GPMV2XEDJBB, :root a[href^="http://www.streamtunerhd.com/signup?"], :root .Mpopup + #Mad > #MadZone, :root .__y_inner > .__y_item, :root .__ywvr .__y_item, :root .ch[onclick="ga(this,event)"], :root .icons-rss-feed + .icons-rss-feed div[class$="_item"], :root .l-container > #fishtank, :root a[href^="http://hyperlinksecure.com/go/"], :root a[href^="http://www.epicgameads.com/"], :root .mod > ._jH + .rscontainer, :root .mw > #rcnt > #center_col > #taw > .c, :root a[href^="http://clicks.binarypromos.com/"], :root a[href^="http://xads.zedo.com/"], :root .nrelate .nr_partner, :root .ob_container .item-container-obpd, :root a[href^="http://www.paddypower.com/?AFF_ID="], :root a[href*=".clkcln.com/"], :root .ob_dual_right > .ob_ads_header ~ .odb_div, :root .plistaList > .itemLinkPET, :root a[href^="http://adtransfer.net/"], :root a[href^="http://bcp.crwdcntrl.net/"], :root .plistaList > .plista_widget_underArticle_item[data-type="pet"], :root a[href^="http://www.pinkvisualgames.com/?revid="], :root .plista_widget_belowArticleRelaunch_item[data-type="pet"], :root a[href*=".revimedia.com/"], :root a[href^="http://abc2.mobile-10.com/"], :root .ra[align="left"][width="30%"], :root .ra[align="right"][width="30%"], :root .ra[width="30%"][align="right"] + table[width="70%"][cellpadding="0"], :root .rhsvw[style="background-color:#fff;margin:0 0 14px;padding-bottom:1px;padding-top:1px;"], :root .rscontainer > .ellip, :root a[href^="http://record.sportsbetaffiliates.com.au/"], :root a[href^="http://www.fducks.com/"], :root .section-result[data-result-ad-type], :root a[href^="http://cinema.friendscout24.de?"], :root .trc_rbox .syndicatedItem, :root .trc_rbox_border_elm .syndicatedItem, :root .trc_rbox_div .syndicatedItemUB, :root .trc_rbox_div a[target="_blank"][href^="http://tab"], :root .trc_related_container div[data-item-syndicated="true"], :root iframe[src^="http://ad.yieldmanager.com/"], :root .vi-lb-placeholder[title="ADVERTISEMENT"], :root .widget-pane-section-result[data-result-ad-type], :root a[href*="a2g-secure.com"], :root a[href^="http://www.ringtonematcher.com/"], :root div[id^="dmRosAdWrapper"], :root a[href^="http://ddownload39.club/"], :root AD-TRIPLE-BOX, :root div[id^="div-adtech-ad-"], :root ADS-RIGHT, :root div[id^="div_openx_ad_"], :root AFS-AD, :root a[href^="//srv.buysellads.com/"], :root AMP-AD, :root a[href^="http://rekoverr.com/"], :root A[href^="https://www.friendlyduck.com/AF_"], :root a[href^="//40ceexln7929.com/"], :root DFP-AD, :root FBS-AD, :root LEADERBOARD-AD, :root a[href^="http://ad.au.doubleclick.net/"], :root a[href*="deliver.trafficfabrik.com"], :root a[href^="http://engine.newsmaxfeednetwork.com/"], :root [ad-id^="googlead"], :root [id*="MarketGid"], :root a[href^="http://1phads.com/"], :root [id*="ScriptRoot"], :root a[href^="http://igromir.info/"], :root a[href*="letsadvertisetogether.com"], :root [id^="bunyad_ads_"], :root a[onmousedown^="this.href='http://staffpicks.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root [lazy-ad="lefttop_banner"], :root [onclick*="content.ad/"], :root a[href^="http://c.jumia.io/"], :root a[href^="http://pokershibes.com/index.php?ref="], :root [onclick^="window.open('http://adultfriendfinder.com/search/"], :root iframe[src^="http://static.mozo.com.au/strips/"], :root div[id^="dfp-ad-"], :root [onclick^="window.open('window.open('//delivery.trafficfabrik.com/"], :root a[data-redirect^="https://paid.outbrain.com/network/redir?"], :root a[href^="http://www.myfreepaysite.com/sfw.php?aid"], :root a[href^="http://dethao.com/"], :root a[href^=" http://n47adshostnet.com/"], :root a[href^="http://ryushare.com/affiliate.python"], :root aside[id^="adrotate_widgets-"], :root a[data-obtrack^="http://paid.outbrain.com/network/redir?"], :root a[data-oburl^="http://paid.outbrain.com/network/redir?"], :root a[href^="http://get.slickvpn.com/"], :root a[data-oburl^="https://paid.outbrain.com/network/redir?"], :root a[data-redirect^="http://click.plista.com/pets"], :root a[href^="http://affiliate.godaddy.com/"], :root a[data-redirect^="http://paid.outbrain.com/network/redir?"], :root a[href^="http://www.cdjapan.co.jp/aff/click.cgi/"], :root div[class^="lifeOnwerAd"], :root a[data-redirect^="this.href='http://paid.outbrain.com/network/redir?"], :root a[href^="http://adclick.g.doubleclick.net/"], :root a[data-url^="http://paid.outbrain.com/network/redir?"], :root a[data-url^="http://paid.outbrain.com/network/redir?"] + .author, :root a[href^="http://hd-plugins.com/download/"], :root a[data-widget-outbrain-redirect^="http://paid.outbrain.com/network/redir?"], :root a[href$="/vghd.shtml"], :root a[href^="https://intrev.co/"], :root a[href*=".adk2x.com/"], :root a[href^="http://mmo123.co/"], :root a[href*=".adsrv.eacdn.com/"] > img, :root a[href*="/cmd.php?ad="], :root td[valign="top"] > .mainmenu[style="padding:10px 0 0 0 !important;"], :root a[href*=".approvallamp.club/"], :root a[href^="http://bluehost.com/track/"], :root a[href*=".bang.com/"][href*="&aff="], :root a[href*=".ichlnk.com/"], :root a[href^="http://www.my-dirty-hobby.com/?sub="], :root a[href*=".inclk.com/"], :root a[href*="=adscript"], :root a[href^="http://www.fleshlight.com/"], :root a[href^="https://tracking.truthfinder.com/?a="], :root a[href*=".intab.fun/"], :root a[href^="http://k2s.cc/pr/"], :root a[href*=".qertewrt.com/"], :root a[href^="https://servedbyadbutler.com/"], :root a[href*=".trust.zone"], :root a[href^="http://xtgem.com/click?"], :root a[href^="http://dwn.pushtraffic.net/"], :root a[href*="//3wr110.xyz/"], :root a[href^="http://www.badoink.com/go.php?"], :root a[href^="http://stateresolver.link/"], :root a[href*="/adServe/banners?"], :root a[href^="http://www.ducksnetwork.com/"], :root a[href*="/adrotate-out.php?"], :root a[href^="http://lp.ezdownloadpro.info/"], :root a[href*="/servlet/click/zone?"], :root a[href*="=Adtracker"], :root a[href*="=exoclick"], :root a[href*="ad2upapp.com/"], :root a[href^="http://mgid.com/"], :root a[href^="http://www.freefilesdownloader.com/"], :root a[href^=" http://ads.ad-center.com/"], :root a[href^="http://ads.integral-marketing.com/"], :root a[href^="http://data.ad.yieldmanager.net/"], :root div[class*="-storyBodyAd-"], :root a[href*="delivery.trafficfabrik.com"], :root div[class^="ads-partner-"], :root a[href*="googleme.eu"], :root a[href^="//tracking.content-recommendation.net/"][href*="/sponsored/click.html?"], :root a[href*="onclkds."], :root a[href^="http://4c7og3qcob.com/"], :root a[href*="pussl3.com"], :root a[href="http://track.freemmo2017.com/"], :root a[href^=" http://www.sex.com/"][href*="&utm_"], :root a[href^="http://srvpub.com/"], :root a[href^="http://fileupnow.rocks/"], :root a[href^="//00ae8b5a9c1d597.com/"], :root a[href^="//4c7og3qcob.com/"], :root a[href^="//5e1fcb75b6d662d.com/"], :root a[href^="http://go.ad2up.com/"], :root a[href^="//88d7b6aa44fb8eb.com/"], :root a[href^="//adbit.co/?a=Advertise&"], :root a[href^="http://www.roboform.com/php/land.php"], :root a[href^="//ads.ad-center.com/"], :root a[href^="//api.ad-goi.com/"], :root a[href^="//bwnjijl7w.com/"], :root a[href^="https://www.camsoda.com/enter.php?id="], :root a[href^="//db52cc91beabf7e8.com/"], :root a[href^="//go.onclasrv.com/"], :root a[href^="//go.vedohd.org/"], :root a[href^="http://www.revenuehits.com/"], :root a[href^="//jsmptjmp.com/"], :root a[onmousedown^="this.href='/wp-content/embed-ad-content/"], :root a[href^="//medleyads.com/spot/"], :root a[target="_blank"][href^="http://api.taboola.com/"], :root a[href^="//nlkdom.com/"], :root a[href^="http://hdplugin.flashplayer-updates.com/"], :root a[href^="//porngames.adult/?SID="], :root a[href^="http://adtrackone.eu/"], :root a[href^="//t.MtagMonetizationA.com/"], :root a[href^="http://www.fpcTraffic2.com/blind/in.cgi?"], :root a[href^="//www.mgid.com/"], :root a[href^="http://www.babylon.com/welcome/index?affID"], :root a[href^="//www.pd-news.com/"], :root a[href^="http://www.firstload.de/affiliate/"], :root a[href^="http://ads.affbuzzads.com/"], :root a[href^="https://fileboom.me/pr/"], :root a[href^="//z6naousb.com/"], :root a[href^="//zenhppyad.com/"], :root div[id^="ads250_250-widget"], :root a[href^="http://2pxg8bcf.top/"], :root a[href^="https://www.share-online.biz/affiliate/"], :root a[href^="http://internalredirect.site/"], :root a[href^="http://360ads.go2cloud.org/"], :root a[href^="http://3wr110.net/"], :root a[href^="http://9amq5z4y1y.com/"], :root a[href^="http://www.1clickmoviedownloader.info/"], :root a[href^="http://server.cpmstar.com/click.aspx?poolid="], :root a[href^="http://www.menaon.com/installs/"], :root a[href^="http://NowDownloadAll.com"], :root div[id^="drudge-column-ads-"], :root a[href^="http://a.adquantix.com/"], :root a[href^="http://ad-apac.doubleclick.net/"], :root a[href^="http://prousa.work/"], :root a[href^="http://fusionads.net"], :root a[href^="http://ad-emea.doubleclick.net/"], :root a[href^="http://ad.doubleclick.net/"], :root a[href^="http://adexprt.me/"], :root a[href^="http://feedads.g.doubleclick.net/"], :root a[href^="http://adf.ly/?id="], :root a[href^="http://api.ringtonematcher.com/"], :root a[href^="http://adfarm.mediaplex.com/"], :root a[href^="http://www.clkads.com/adServe/"], :root a[href^="http://adlev.neodatagroup.com/"], :root a[href^="http://wgpartner.com/"], :root div[id^="ad_bigbox_"], :root a[href^="http://admingame.info/"], :root a[href^="http://ads2.williamhill.com/redirect.aspx?"], :root div[class^="ad_position_"], :root a[href^="http://adprovider.adlure.net/"], :root a[href^="http://adrunnr.com/"], :root a[href^="http://www.sfippa.com/"], :root div[id^="div_ad_stack_"], :root a[href^="https://paid.outbrain.com/network/redir?"], :root a[href^="http://ads.ad-center.com/"], :root div[id^="ad-position-"], :root a[href^="http://www.download-provider.org/"], :root a[href^="https://trackjs.com/?utm_source"], :root a[href^="http://ads.expekt.com/affiliates/"], :root a[href^="http://www.sex.com/pics/?utm_"], :root a[href^="http://adserver.adreactor.com/"], :root a[href^="http://sharesuper.info/"], :root a[href^="http://adserver.adtech.de/"], :root a[href^="http://adserver.adtechus.com/"], :root a[href^="http://cdn.adstract.com/"], :root a[href^="http://www.adxpansion.com"], :root a[href^="http://www.socialsex.com/"], :root iframe[src^="http://cdn1.adexprt.com/"], :root div[id^="adspot-"], :root a[href^="http://adserving.liveuniversenetwork.com/"], :root a[href^="http://adserving.unibet.com/"], :root a[href^="https://www.goldenfrog.com/vyprvpn?offer_id="][href*="&aff_id="], :root a[href^="http://www.installads.net/"], :root a[href^="https://dediseedbox.com/clients/aff.php?"], :root a[href^="http://adsrv.keycaptcha.com"], :root a[href^="http://clickserv.sitescout.com/"], :root a[href^="http://adtrack123.pl/"], :root a[href^="http://adultfriendfinder.com/p/register.cgi?pid="], :root a[href^="http://aff.ironsocket.com/"], :root div[id^="yandex_ad"], :root a[href^="http://affiliate.coral.co.uk/processing/"], :root a[href^="http://affiliate.glbtracker.com/"], :root a[href^="http://affiliates.score-affiliates.com/"], :root a[href^="http://aflrm.com/"], :root div[id^="ads300_100-widget"], :root aside[id^="div-gpt-ad"], :root a[href^="http://www.dealcent.com/register.php?affid="], :root a[href^="http://www.greenmangaming.com/?tap_a="], :root a[href^="http://amzn.to/"] > img[src^="data"], :root a[href^="http://mojofun.info/"], :root a[href^="http://record.betsafe.com/"], :root a[href^="http://anonymous-net.com/"], :root a[href^="http://api.content.ad/"], :root a[href^="http://at.atwola.com/"], :root a[href^="https://www.dsct1.com/"], :root a[href^="http://bc.vc/?r="], :root a[href^="http://games.ucoz.ru/"][target="_blank"], :root a[href^="http://bcntrack.com/"], :root a[href^="http://www.bet365.com/"][href*="&affiliate="], :root a[href^="http://bestorican.com/"], :root a[href^="http://betahit.click/"], :root a[href^="http://campeeks.com/"][href*="&utm_"], :root a[href^="http://bonusfapturbo.nmvsite.com/"], :root a[href^="http://bs.serving-sys.com/"], :root a[href^="http://www.downloadthesefiles.com/"], :root a[href^="http://c.actiondesk.com/"], :root a[href^="http://goldmoney.com/?gmrefcode="], :root a[href^="http://callville.xyz/"], :root a[href^="http://campaign.bharatmatrimony.com/cbstrack/"], :root a[href^="http://campaign.bharatmatrimony.com/track/"], :root a[href^="http://casino-x.com/?partner"], :root a[href^="http://secure.signup-page.com/"], :root a[href^="http://cdn.adsrvmedia.net/"], :root a[href^="http://lp.ilivid.com/"], :root a[href^="http://cdn3.adbrau.com/"], :root a[href^="http://t.mdn2015x2.com/"], :root a[href^="http://www.accuserveadsystem.com/accuserve-go.php?"], :root a[style="display:block;width:300px;min-height:250px"][href^="http://li.cnet.com/click?"], :root a[href^="http://centertrust.xyz/"], :root a[href^="http://chaturbate.com/affiliates/"], :root div[id^="ads300_600-widget"], :root a[href^="http://click.guamwnvgashbkashawhgkhahshmashcas.pw/"], :root a[href^="http://ethfw0370q.com/"], :root a[href^="http://www5.smartadserver.com/call/pubjumpi/"], :root a[href^="http://click.plista.com/pets"], :root a[href^="http://clicks.guamwnvgashbkashawhgkhahshmashcas.pw/"], :root a[href^="http://www.hitcpm.com/"], :root a[href^="http://clk.directrev.com/"], :root a[href^="http://clkmon.com/adServe/"], :root a[href^="http://connectlinking6.com/"], :root a[href^="http://contractallsticker.net/"], :root a[href^="http://cpaway.afftrack.com/"], :root a[href^="http://onclickads.net/"], :root a[href^="http://cwcams.com/landing/click/"], :root a[href^="http://d2.zedo.com/"], :root a[href^="https://adhealers.com/"], :root a[href^="https://ad.atdmt.com/"], :root a[href^="http://data.committeemenencyclopedicrepertory.info/"], :root a[href^="http://www.fonts.com/BannerScript/"], :root a[href^="http://data.linoleictanzaniatitanic.com/"], :root a[href^="http://databass.info/"], :root a[href^="http://dftrck.com/"], :root a[href^="http://down1oads.com/"], :root a[href^="http://www.torntvdl.com/"], :root input[onclick^="window.open('http://www.friendlyduck.com/"], :root a[href^="http://download-performance.com/"], :root a[href^="http://duckcash.eu/"], :root a[href^="http://eclkmpsa.com/"], :root a[href^="http://elite-sex-finder.com/?"], :root a[href^="http://www.downloadplayer1.com/"], :root a[href^="http://elitefuckbook.com/"], :root a[href^="http://extra.bet365.com/"][href*="?affiliate="], :root a[href^="http://t.wowtrk.com/"], :root a[href^="http://feeds1.validclick.com/"], :root a[href^="http://ffxitrack.com/"], :root a[href^="http://finaljuyu.com/"], :root a[href^="http://findersocket.com/"], :root a[href^="http://go.mobisla.com/"], :root a[href^="http://freesoftwarelive.com/"], :root a[href^="http://g1.v.fwmrm.net/ad/"], :root a[href^="http://t.mdn2015x1.com/"], :root a[href^="http://galleries.pinballpublishernetwork.com/"], :root iframe[id^="google_ads_iframe"], :root a[href^="http://galleries.securewebsiteaccess.com/"], :root a[href^="http://gca.sh/user/register?ref="], :root a[href^="http://www.affiliates1128.com/processing/"], :root a[href^="http://getlinksinaseconds.com/"], :root a[href^="http://go.seomojo.com/tracking202/"], :root a[href^="http://green.trafficinvest.com/"], :root a[href^="http://greensmoke.com/"], :root a[href^="http://promos.bwin.com/"], :root a[href^="http://n.admagnet.net/"], :root a[href^="http://guideways.info/"], :root a[href^="http://hpn.houzz.com/"], :root a[href^="http://www.coinducks.com/"], :root a[href^="http://hyperies.info/"], :root a[href^="http://imads.integral-marketing.com/"], :root div[id^="ADV-SLOT-"], :root a[href^="http://install.securewebsiteaccess.com/"], :root a[href^="http://www.sex.com/?utm_"], :root a[href^="https://go.trkclick2.com/"], :root a[href^="http://istri.it/?"], :root a[href^="http://join3.bannedsextapes.com/track/"], :root a[href^="http://k2s.cc/code/"], :root a[href^="http://www.yourfuckbook.com/?"], :root a[href^="http://latestdownloads.net/download.php?"], :root a[href^="http://linksnappy.com/?ref="], :root a[href^="http://liversely.net/"], :root a[href^="http://www.tirerack.com/affiliates/"], :root a[href^="http://marketgid.com"], :root a[href^="https://www.financeads.net/tc.php?"], :root a[href^="https://pubads.g.doubleclick.net/"], :root a[href^="http://www.idownloadplay.com/"], :root a[href^="http://mo8mwxi1.com/"], :root a[href^="http://www.flashx.tv/downloadthis"], :root a[href^="http://online.ladbrokes.com/promoRedirect?"], :root div[class^="ResponsiveAd-"], :root a[href^="http://pan.adraccoon.com?"], :root div[id^="MarketGid"], :root a[href^="http://papi.mynativeplatform.com:80/pub2/"], :root a[href^="http://www.graboid.com/affiliates/"], :root a[href^="http://partner.sbaffiliates.com/"], :root div[class^="pane-google-admanager-"], :root a[href^="http://prochina.link/"], :root a[href^="http://serve.williamhill.com/promoRedirect?"], :root a[href^="http://prochina.space/"], :root a[href^="http://www.1clickdownloader.com/"], :root div[class^="Ad__bigBox"], :root a[href^="http://pubads.g.doubleclick.net/"], :root a[href^="http://pwrads.net/"], :root a[href^="http://www.brightwheel.info/"], :root a[href^="http://record.commissionking.com/"], :root a[href^="http://refer.webhostingbuzz.com/"], :root a[href^="http://tezfiles.com/pr/"], :root a[href^="http://s9kkremkr0.com/"], :root a[href^="http://searchtabnew.com/"], :root a[href^="http://secure.hostgator.com/~affiliat/"], :root a[href^="http://webgirlz.online/landing/"], :root a[href^="http://see-work.info/"], :root a[href^="http://servicegetbook.net/"], :root a[href^="http://steel.starflavor.bid/"], :root a[href^="https://dcs.adgear.com/clicks/"], :root a[href^="http://syndication.exoclick.com/"], :root a[href^="https://track.healthtrader.com/"], :root a[href^="http://t.mdn2015x3.com/"], :root a[href^="http://tour.affbuzzads.com/"], :root a[href^="http://track.adform.net/"], :root a[href^="http://track.affiliatenetwork.co.za/"], :root a[href^="http://wxdownloadmanager.com/dl/"], :root a[href^="http://track.incognitovpn.com/"], :root a[href^="http://tracker.mybroadband.co.za/"], :root a[href^="http://www.pheedo.com/"], :root div[data-spotim-slot], :root div[class^="ad_border_"], :root a[href^="http://tracking.crazylead.com/"], :root a[href^="http://www.friendlyquacks.com/"], :root a[href^="http://tracking.deltamediallc.com/"], :root a[href^="http://tracking.toroadvertising.com/"], :root a[href^="https://go.stripchat.com/"][href*="&campaignId="], :root a[href^="http://us.marketgid.com"], :root a[href^="http://www.firstload.com/affiliate/"], :root a[href^="http://webtrackerplus.com/"], :root a[href^="http://wopertific.info/"], :root a[href^="http://www.123-reg.co.uk/affiliate2.cgi"], :root a[href^="http://www.TwinPlan.com/AF_"], :root a[href^="http://www.bitlord.me/share/"], :root div[data-subscript="Advertising"], :root a[href^="http://www.adbrite.com/mb/commerce/purchase_form.php?"], :root a[href^="http://www.adshost2.com/"], :root div > [class][onclick*=".updateAnalyticsEvents"], :root a[href^="http://www.afco2go.com/srv.php?"], :root a[href^="http://www.afgr3.com/"], :root a[href^="http://www.amazon.co.uk/exec/obidos/external-search?"], :root a[href^="http://www.liversely.net/"], :root a[href^="http://www.bluehost.com/track/"] > img, :root div[id^="advads_"], :root a[href^="http://www.cash-duck.com/"], :root a[href^="https://chaturbate.com/in/?track="], :root a[href^="http://www.clickansave.net/"], :root a[href^="http://www.dl-provider.com/search/"], :root a[href^="http://www.duckssolutions.com/"], :root div[id^="div-ads-"], :root a[href^="http://www.down1oads.com/"], :root a[href^="http://www.downloadweb.org/"], :root a[href^="http://www.duckcash.eu/"], :root a[href^="http://www.firstclass-download.com/"], :root a[href^="http://www.quick-torrent.com/download.html?aff"], :root a[href^="https://prf.hn/click/"][href*="/adref:"], :root a[href^="http://www.gamebookers.com/cgi-bin/intro.cgi?"], :root a[href^="http://www.incredimail.com/?id="], :root a[href^="http://www.on2url.com/app/adtrack.asp"], :root a[href^="http://www.ireel.com/signup?ref"], :root a[href^="http://www.zergnet.com/i/"], :root a[href^="http://www.plus500.com/?id="], :root a[href^="http://www.linkbucks.com/referral/"], :root a[href^="http://www.liutilities.com/"], :root iframe[id^="google_ads_frame"], :root a[href^="http://www.mobileandinternetadvertising.com/"], :root a[href^="http://www.myfreecams.com/?co_id="][href*="&track="], :root a[onmousedown^="this.href='http://staffpicks.outbrain.com/network/redir?"][target="_blank"], :root a[href^="http://www.myfreepaysite.com/sfw_int.php?aid"], :root a[href^="http://www.mysuperpharm.com/"], :root a[href^="http://www.sex.com/videos/?utm_"], :root a[href^="http://www.myvpn.pro/"], :root a[href^="http://www.pinkvisualpad.com/?revid="], :root a[href^="http://www.ragazzeinvendita.com/?rcid="], :root a[href^="http://www.richducks.com/"], :root a[href^="https://dltags.com/"], :root a[href^="http://www.securegfm.com/"], :root a[href^="http://www.seekbang.com/cs/"], :root a[href^="http://www.sexgangsters.com/?pid="], :root a[href^="http://www.streamate.com/exports/"], :root a[href^="http://www.text-link-ads.com/"], :root a[href^="http://www.torntv-downloader.com/"], :root a[href^="http://www.twinplan.com/AF_"], :root a[href^="https://porndeals.com/?track="], :root a[href^="http://www.urmediazone.com/signup"], :root a[href^="http://www.wantstraffic.com/"], :root a[href^="http://www.webtrackerplus.com/"], :root a[href^="http://www.xmediaserve.com/"], :root a[href^="http://www1.clickdownloader.com/"], :root a[href^="http://y1jxiqds7v.com/"], :root a[href^="http://yads.zedo.com/"], :root a[href^="http://z1.zedo.com/"], :root div[id^="ad-server-"], :root a[href^="http://zevera.com/afi.html"], :root a[href^="https://aaucwbe.com/"], :root a[href^="https://ad.doubleclick.net/"], :root a[href^="https://ads.ad4game.com/"], :root a[href^="https://adswick.com/"], :root a[href^="https://affiliates.bet-at-home.com/processing/"], :root a[href^="https://atomidownload.com/"], :root a[href^="https://awentw.com/"], :root a[href^="https://betway.com/"][href*="&a="], :root a[href^="https://bs.serving-sys.com"], :root a[href^="https://chaturbate.com/affiliates/"], :root a[href^="https://chaturbate.com/in/?tour="], :root a[href^="https://click.plista.com/pets"], :root a[href^="https://control.trafficfabrik.com/"], :root a[href^="https://evaporate.pw/"], :root a[href^="https://farm.plista.com/pets"], :root a[href^="https://go.ad2up.com/"], :root a[href^="https://go.onclasrv.com/"], :root a[href^="https://keep2share.cc/pr/"], :root a[href^="https://members.linkifier.com/public/affiliateLanding?refCode="], :root a[href^="https://redirect.ero-advertising.com/"], :root div[id^="ad-cid-"], :root a[href^="https://secure.adnxs.com/clktrb?"], :root a[href^="https://secure.eveonline.com/ft/?aid="], :root a[href^="https://syndication.exoclick.com/splash.php?"], :root a[href^="https://torguard.net/aff.php"], :root a[href^="https://track.adform.net/"], :root a[href^="https://track.clickmoi.xyz/"], :root a[href^="https://trklvs.com/"], :root a[href^="https://trust.zone/go/r.php?RID="], :root a[href^="https://understandsolar.com/signup/?lead_source="][href*="&tracking_code="], :root a[href^="https://windscribe.com/promo/"], :root a[href^="https://www.adskeeper.co.uk/"], :root a[href^="https://www.adultempire.com/"][href*="?partner_id="], :root a[href^="https://www.bebi.com"], :root a[href^="https://www.camyou.com/?cam="][href*="&track="], :root a[href^="https://www.googleadservices.com/pagead/aclk?"], :root a[href^="https://www.oboom.com/ad/"], :root a[href^="https://www.popads.net/users/"], :root a[href^="https://www.secureupload.eu/suprerefid="], :root a[href^="https://www.spyoff.com/"], :root a[onclick*="//m.economictimes.com/etmack/click.htm"], :root a[onmousedown^="this.href='http://paid.outbrain.com/network/redir?"][target="_blank"], :root a[onmousedown^="this.href='http://paid.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"], :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root a[target="_blank"][onmousedown="this.href^='http://paid.outbrain.com/network/redir?"], :root bottomadblock, :root div[class^="BlockAdvert-"], :root div[class$="dealnews"] > .dealnews, :root div[class*="_AdInArticle_"], :root div[class^="Ad__adContainer"], :root div[class^="Ad__container"], :root div[class^="AdhesionAd_"], :root div[class^="adbanner_"], :root div[class^="adpubs-"], :root div[class^="awpcp-random-ads"], :root div[class^="block-openx-"], :root div[class^="gemini-ad"], :root div[class^="local-feed-banner-ads"], :root div[class^="proadszone-"], :root div[data-native_ad], :root div[id^="YFBMSN"], :root div[id^="acm-ad-tag-"], :root div[id^="ad-div-"], :root div[id^="adfox_"], :root div[id^="adrotate_widgets-"], :root div[id^="ads300_250-widget"], :root div[id^="advads-"], :root div[id^="advt-"], :root div[id^="block-views-topheader-ad-block-"], :root div[id^="cns_ads_"], :root div[id^="crt-"][style], :root div[id^="dfp-slot-"], :root div[id^="google_ads_iframe_"], :root div[id^="google_dfp_"], :root div[id^="lazyad-"], :root div[id^="proadszone-"], :root div[id^="q1-adset-"], :root div[id^="zergnet-widget"], :root div[itemtype="http://schema.org/WPAdBlock"], :root topadblock, :root div[itemtype="http://www.schema.org/WPAdBlock"], :root iframe[src^="http://cdn2.adexprt.com/"], :root img[alt^="Fuckbook"], :root input[onclick^="window.open('http://www.FriendlyDuck.com/"], :root p[id^="div-gpt-ad-"], :root script[src^="http://free-shoutbox.net/app/webroot/shoutbox/sb.php?shoutbox="] + #freeshoutbox_content { display: none !important; }</style><link rel="stylesheet" href="data:text/css;charset=utf-8;base64,LmNmLXR0LWVsZW1lbnQgLmNmLXR0LWNvbnRlbnQgewogIC13ZWJraXQtYm94LWFsaWduOiBjZW50ZXI7CiAgICAgIC1tcy1mbGV4LWFsaWduOiBjZW50ZXI7CiAgICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyOwogIGNvbG9yOiB3aGl0ZTsKICBkaXNwbGF5OiAtd2Via2l0LWJveDsKICBkaXNwbGF5OiAtbXMtZmxleGJveDsKICBkaXNwbGF5OiBmbGV4OwogIHBhZGRpbmc6IDAuMmVtIDAuN2VtIDAuMmVtIDFlbTsKfQoKLmNmLXR0LWNvbnRlbnQ6aG92ZXIgewogIGN1cnNvcjogcG9pbnRlcjsKfQoKLmNmLXR0LWNvbnRlbnQgPiBzdmcgewogIGRpc3BsYXk6IGlubGluZS1ibG9jazsKICBoZWlnaHQ6IDIuNWVtOwogIHdpZHRoOiAyLjVlbTsKfQo="></head>
+
+
+  <body>
+
+    <a class="fa fa-home logo-readium" href="https://philsturgeon.uk/"></a>
+
+
+    <!-- content start -->
+
+    <main class="content" role="main">
+      <article class="post">
+        <div class="noarticleimage">
+          <div class="post-meta">
+            <h1 class="post-title">HTTP/REST API File Uploads</h1>
+            <div class="cf post-meta-text">
+              <div class="author-image" style="background-image: url(/images/author.jpg)">Blog Logo</div>
+              <h4 class="author-name" itemprop="author" itemscope="" itemtype="http://schema.org/Person">Phil Sturgeon</h4>
+              on
+              <time datetime="2016-01-04 09:52:00 UTC">
+                Jan  4 2016
+              </time>
+              <a href="https://philsturgeon.uk/tag/http/">#http</a>
+              <a href="https://philsturgeon.uk/tag/api/">#api</a>
+              <a href="https://philsturgeon.uk/tag/uploads/">#uploads</a>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <section class="post-content">
+          <div class="post-reading">
+            <span class="post-reading-time">6 min</span> read
+          </div>
+          <a name="topofpage"></a>
+          <hr>
+
+          <p>File uploads are one thing that always feel rather complicated, and working out how to handle this in an API doesn't make life easier. For many programmers, this has been abstracted away behind the HTTP standard, HTML and convenient features in languages like PHP, that populate a <code>$_FILES</code> array for us to play with. This is not really how it works for an API.</p>
+
+<p>I have come across a few main approaches to uploading files:</p>
+
+<ol>
+  <li>Uploading a file with metadata, like an image with comments, categories, location, etc.</li>
+  <li>Uploading just a file by itself, like an avatar for an existing user</li>
+  <li>Uploading a file from a URL</li>
+</ol>
+
+<p>To many folks number 1 sounds like a perfect time to use multipart forms, but they really are a mess, and do not make as much sense for 2 and 3.</p>
+
+<h2 id="why-multipart-mostly-sucks">Why Multipart Mostly Sucks</h2>
+
+<p>Making a multipart request looks a little like this:</p>
+
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/avatars</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">localhost:3000</span>
+<span class="na">Authentication</span><span class="p">:</span> <span class="s">Bearer some-token</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">multipart/form-data; boundary=MultipartBoundry</span>
+<span class="na">Accept-Encoding</span><span class="p">:</span> <span class="s">gzip, deflate</span>
+
+--MultipartBoundry
+Content-Disposition: form-data; name="image"; filename="12348024_1150631324960893_344096225642532672_n.jpg"
+Content-Type: image/jpeg
+
+rawimagecontentwhichlooksfunnyandgoesonforever.d.sf.d.f.sd.fsdkfjkslhfdkshfkjsdfdkfh
+--MultipartBoundry
+Content-Disposition: form-data; name="category"
+
+123
+--MultipartBoundry
+Content-Disposition: form-data; name="location"
+
+123,-50
+--MultipartBoundry--
+</code></pre>
+
+<p>The fields are split up, as are the files, by the boundary separator. These requests can get pretty big with a fair number of fields, and it's not JSON.</p>
+
+<p>We can do JSON, but it's a bit gross:</p>
+
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/avatars</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">localhost:3000</span>
+<span class="na">Authentication</span><span class="p">:</span> <span class="s">Bearer some-token</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">multipart/form-data; boundary=MultipartBoundry</span>
+<span class="na">Accept-Encoding</span><span class="p">:</span> <span class="s">gzip, deflate</span>
+
+--MultipartBoundry
+Content-Disposition: form-data; name="image"; filename="12348024_1150631324960893_344096225642532672_n.jpg"
+Content-Type: image/jpeg
+
+rawimagecontentwhichlooksfunnyandgoesonforever.d.sf.d.f.sd.fsdkfjkslhfdkshfkjsdfdkfh
+--MultipartBoundry
+Content-Disposition: form-data; name="myJsonData"
+Content-Type: application/json
+
+{"category":123,"location":123,-50}
+--MultipartBoundry--
+</code></pre>
+
+<p>Now, I know "a bit gross" is not a strong technical reason to do anything, but think about documenting this. Think about explaining to developers that you want to send JSON, not actual JSON but… some JSON in a string. Then think about how developers actually do that. The Postman HTTP client that I love to use has no option for that, and I'm not sure how many of my favourite gem/composer package HTTP clients can do it either.</p>
+
+<p>Then there's all the mucking around with setting a boundary, the complexity of building out expected responses for your integration tests, and all sorts of other things I'd rather not think about.</p>
+
+<p>So, how do we do it if not multipart form uploads?</p>
+
+<h2 id="method-a-direct-file-upload">Method A: Direct File Upload</h2>
+
+<p>Sending along JSON data and the image in one request is not always something that needs to happen. You can either split it into two requests, or you can just have the one request if you only need to infer a little bit of data from the request.</p>
+
+<p>For example, direct image upload works for uploading avatars for a user:</p>
+
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/avatars</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">localhost:3000</span>
+<span class="na">Authentication</span><span class="p">:</span> <span class="s">Bearer some-token</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">image/jpeg</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">284</span>
+
+raw image content
+</code></pre>
+
+<p>We have an <code>/avatars</code> collection which is only avatars for that user, and the user is detected by checking <code>oauth2-access-token</code>. Between knowing the user, and being provided the <code>Content-Type</code> to let us know if it's a JPEG, Gif or PNG means we actually have all the connected data we need for this use-case, and the image itself is just sat in the HTTP body as raw data. Httparty in Ruby will for example take an instance of <code>File</code> as the payload, or you can send the string in PHP doing <code>file_get_contents('/path/to/file')</code> and send that.</p>
+
+<p>From there it is trivially easy to fetch that body have a string of the image:</p>
+
+<ul>
+  <li>PHP: <code>file_get_contents('php://input');</code></li>
+  <li>Ruby (Rack): <code>request.body</code></li>
+</ul>
+
+<p>With this string you can easily upload it to S3 or put it anywhere else you like, especially if you're using something excellent like <a href="http://flysystem.thephpleague.com/">Flysystem</a>.</p>
+
+<p>The only thing worth mentioning on that request is the addition of <code>Content-Length</code>, which is basically the size of the image being uploaded. A quick check of <code>headers['Content-Length'].to_i &gt; 3.megabytes</code> will let us quickly reply saying "This image is too large", which is better than waiting forever to say that. Sure, malicious folks could lie here, so your backend code will need to check the image size too. <strong>Never trust input.</strong></p>
+
+<p><code>Content-Length</code> also lets you know if you've got all of the image or not. If there is a trouble and only some of the image is uploaded, then the size of the image you receive will not be the same as the content length. Check them, see how it goes.</p>
+
+<p>The response here will have a simple body:</p>
+
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"avatars"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:3000/attachments/store/foo/avatar.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>That <code>user</code> was inferred from the token, and the <code>image_url</code> is the resulting URL to the avatar that has been uploaded. Normally this would be a CDN URL of course, because you don't want your API responsible for handling asset downloads too. Probably.</p>
+
+<h2 id="method-b-upload-from-url">Method B: Upload from URL</h2>
+
+<p>Uploading images directly in the HTTP body was something that worked well for the mobile teams at <a href="https://ride.com/">Ride</a>, but the web team didn't have as much fun with it. It's probably down to the business requirements we have. Basically, the mobile teams were uploading user avatar images directly from the photo libraries on the device, and the web teams were pulling avatars from Facebook or Twitter.</p>
+
+<p>Even if we were doing things a little differently, there is no way for the web team to access the raw content of a full image using just browser-based JavaScript. They could probably do some madness to get it, but it seemed easier to just provide another option. The same endpoint, with the same logic behind it all, but add in support for a JSON payload:</p>
+
+<pre class="highlight plaintext"><code>POST /avatars HTTP/1.1
+Host: localhost:3000
+Authentication: Bearer some-token
+Content-Type: application/json
+
+{
+  "image_url" : "https://facebook.com/images/dfidsyfsudf.png"
+}
+</code></pre>
+
+<p>That was literally all we needed to support externally to have it all work. Then internally I checked the content type, and either called a <code>read_from_string</code> method or a <code>read_from_url</code> method, which both do exactly what it says on the tin.</p>
+
+<p>Then of course the response will be identical to Method 1:</p>
+
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"avatars"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:3000/attachments/store/bar/avatar.png"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Supporting both might not be something you need to do, and you might start out only needing one. Definitely do not write API functionality that you do not need and will not use, but keep in mind that at some point somebody may want the other approach added in. HTTP makes that incredibly easy to do thanks to being able to switch <code>Content-Type</code>.</p>
+
+<h2 id="what-about-meta-data">What about Meta Data?</h2>
+
+<p>To go back to the list of different types of upload, you might have noticed we've not actually covered all three.</p>
+
+<ol>
+  <li>Uploading a file with metadata, like an image with comments, categories, location, etc.</li>
+  <li>Uploading just a file by itself, like an avatar for an existing user</li>
+  <li>Uploading a file from a URL</li>
+</ol>
+
+<p>"Direct file upload" and "upload from URL" cover 2 and 3, but the first point is still not covered. By now you might be thinking "Dude, multipart!" but there is another way.</p>
+
+<p>YouTube video uploads are incredibly quirky and poorly documented. They hide their HTTP interactions behind poorly built SDKs (especially the PHP one, it hurts to look at), but their API does something I really like.</p>
+
+<p>Basically, the <a href="https://developers.google.com/youtube/v3/guides/using_resumable_upload_protocol">Resumable Upload Option</a></p>
+
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/upload/youtube/v3/videos?uploadType=resumable&amp;part=snippet,status,contentDetails</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">www.googleapis.com</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer AUTH_TOKEN</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">278</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json; charset=UTF-8</span>
+<span class="na">X-Upload-Content-Length</span><span class="p">:</span> <span class="s">3000000</span>
+<span class="na">X-Upload-Content-Type</span><span class="p">:</span> <span class="s">video/*</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nt">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My video title"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a description of my video"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"cool"</span><span class="p">,</span><span class="w"> </span><span class="s2">"video"</span><span class="p">,</span><span class="w"> </span><span class="s2">"more keywords"</span><span class="p">],</span><span class="w">
+    </span><span class="nt">"categoryId"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"privacyStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"embeddable"</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"license"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youtube"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Here they upload all of the meta data for their video before sending it. This is another huge benefit over multipart, as this small and simple HTTP request has a much better chance of being successful first time than a request with a 1gb video in it. This small web request is likely to sneak through, and reduce the change of that title and description being lost, which is so so so annoying.</p>
+
+<p>Then, the HTTP response of the video contains a <code>Location</code> header with a URL to the video upload endpoint:</p>
+
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Location</span><span class="p">:</span> <span class="s">https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&amp;upload_id=xa298sd_f&amp;part=snippet,status,contentDetails</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">0</span>
+</code></pre>
+
+<p>Then with this URL you're back to method 1: direct file uploads. With all of your meta data saved, all you have to do is fire the video at this URL:</p>
+
+<pre class="highlight http"><code><span class="nf">PUT</span> <span class="nn">UPLOAD_URL</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer AUTH_TOKEN</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">CONTENT_LENGTH</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">CONTENT_TYPE</span>
+
+BINARY_FILE_DATA
+</code></pre>
+
+<p>What's cool about this approach, is that URL <em>could</em> be part of your main API, or it <em>could</em> be a totally different service. It could be a direct-to-S3 URL, or some Go service, or anything.</p>
+
+<p>Larger companies will be more prone to building a service to handle such files coming in, whilst smaller teams might want to keep things simple and let their API do the heavy lifting. The larger the file, the more likely you'll want to split that off, as having your API handle these huge files - even if the uploads are chunked - will keep the HTTP workers busy. Maintaining those connections might slow down a Rails-based API for a long time, for example, so having another service would help there.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>I know thats a bit vague and fluffy, and doesn't give a single recommendation, but the point here is that you have some options.</p>
+
+<p>Take a think about what sort of file uploads you need, how big the files are, where they're going and what sort of clients will be using your API. The YouTube approach is a bit complex, but a combination of 1 and 2 usually take care of the job, and stop you needing to work with multi-part uploads, which to me hardly solve the problem and make life unnecessarily complex for some developers.</p>
+
+          <hr>
+
+        </section>
+        <footer class="post-footer">
+            <section class="share">
+            </section>
+            <section class="post-next-previous">
+                <p>
+                    Previous:
+                    <a href="https://philsturgeon.uk/2015/11/20/deploying-with-git-flow-tags-and-circleci/" class="button">Deploying with Git-Flow, Tags and CircleCI</a>
+                </p>
+                <p style="float:right">
+                    Next:
+                    <a href="https://philsturgeon.uk/2016/01/22/made-in-production-ii-learning-and-improving/" class="button">Made in Production II: Learning and Improving</a>
+                </p>
+            </section>
+        </footer>
+        <div class="bottom-teaser cf">
+          <div class="more isLeft">
+            <h5 class="index-headline featured"><span>Written by</span></h5>
+            <section class="author">
+              <div class="author-image" style="background-image: url(/images/author.jpg)">Blog Logo</div>
+              <h4>Phil Sturgeon</h4>
+              <p class="bio">Platform Engineer @ WeWork who talks about APIs a lot. Programming Polyglot, Pragmatist, Centerist and Sarcasist. Ex-The League of Extraordinary Packages, PHP The Right Way, Ex-PHP-FIG, Ex-CodeIgniter, Ex-FuelPHP, Ex-PyroCMS.</p>
+            </section>
+          </div>
+          <div class="more isRight">
+            <h5 class="index-headline featured"><span>More Writing</span></h5>
+            <section class="author">
+              <a href="http://apisyouwonthate.com/">
+                <div class="book-image build-apis">Book Cover</div>
+                <h4>Build APIs You Won't Hate</h4>
+              </a>
+              <p class="bio">Everyone and their dog wants an API, so you should probably learn how to build them.</p>
+              <p><a href="http://apisyouwonthate.com/">Buy it from LeanPub or Amazon</a>.</p>
+            </section>
+          </div>
+        </div>
+      </article>
+
+
+    </main>
+    <div class="bottom-closer">
+      <div class="background-closer-image" style="background-image: url(/images/cover.jpg)">
+        Image
+      </div>
+      <div class="inner">
+        <h1 class="blog-title">Phil Sturgeon</h1>
+        <h2 class="blog-description">Platform Engineer @ WeWork who talks about APIs a lot. Programming Polyglot, Pragmatist, Centerist and Sarcasist. Ex-The League of Extraordinary Packages, PHP The Right Way, Ex-PHP-FIG, Ex-CodeIgniter, Ex-FuelPHP, Ex-PyroCMS.</h2>
+        <a href="https://philsturgeon.uk/" class="btn">Back to Overview</a>
+      </div>
+    </div>
+
+    <!-- content end -->
+
+    <footer class="footer" role="contentinfo">
+<div class="footer-links">
+<ul class="context">
+<li>
+<h3>Content</h3>
+</li>
+<li>
+<a href="https://philsturgeon.uk/about">About</a>
+</li>
+<li>
+<a href="https://philsturgeon.uk/books">Books</a>
+</li>
+<li>
+<a href="https://philsturgeon.uk/speaking">Speaking</a>
+</li>
+</ul>
+<ul class="follow">
+<li>
+<h3>Follow Me</h3>
+</li>
+<li>
+<a href="https://twitter.com/philsturgeon">Twitter</a>
+</li>
+<li>
+<a href="https://github.com/philsturgeon">GitHub</a>
+</li>
+<li>
+<a href="http://apibusters.com/">API Busters Podcast</a>
+</li>
+<li>
+<a href="http://phil.bike/">Phil.Bike</a>
+</li>
+</ul>
+<ul class="recent_posts">
+<li>
+<h3>Recent Posts</h3>
+<ul>
+<li><a href="https://philsturgeon.uk/2018/05/21/picking-an-api-paradigm-implementation/">Picking the right API Paradigm</a></li>
+<li><a href="https://philsturgeon.uk/api/2018/05/02/api-evolution-for-rest-http-apis/">API Evolution for REST/HTTP APIs</a></li>
+<li><a href="https://philsturgeon.uk/api/2018/04/13/openapi-and-json-schema-divergence-solved/">Solving OpenAPI and JSON Schema Divergence</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</footer>
+
+    <script src="./HTTP_REST API File Uploads _ Phil Sturgeon_files/jquery-1.11.3.min.js.download"></script>
+<script src="./HTTP_REST API File Uploads _ Phil Sturgeon_files/jquery.fitvids.js.download"></script>
+<script src="./HTTP_REST API File Uploads _ Phil Sturgeon_files/index.js.download"></script>
+<script src="./HTTP_REST API File Uploads _ Phil Sturgeon_files/readingTime.min.js.download"></script>
+<script>
+(function ($) {
+  "use strict";
+  $(document).ready(function(){
+
+    var $window = $(window),
+    $image = $('.post-image-image, .teaserimage-image');
+    $window.on('scroll', function() {
+      var top = $window.scrollTop();
+
+      if (top < 0 || top > 1500) { return; }
+      $image
+        .css('transform', 'translate3d(0px, '+top/3+'px, 0px)')
+        .css('opacity', 1-Math.max(top/700, 0));
+    });
+    $window.trigger('scroll');
+
+    var height = $('.article-image').height();
+    $('.post-content').css('padding-top', height + 'px');
+
+    $('a[href*=#]:not([href=#])').click(function() {
+      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+       && location.hostname == this.hostname) {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+          $('html,body').animate({ scrollTop: target.offset().top }, 500);
+          return false;
+        }
+      }
+    });
+  });
+}(jQuery));
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-8523256-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  
+
+
+</body></html>

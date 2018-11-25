@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<!-- saved from url=(0114)https://needhamia.com/how-to/java-software-development/create-a-jersey-web-project-using-maven-tomcat-and-eclipse/ -->
+<html lang="en-US"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="viewport" content="width=device-width">
+	<title>Create a Jersey web project using Maven, Tomcat, and Eclipse | The Independent Nation of Needhamia</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://needhamia.com/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="https://needhamia.com/wp-content/themes/twentyfourteen/js/html5.js"></script>
+	<![endif]-->
+	<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link href="https://fonts.gstatic.com/" crossorigin="" rel="preconnect">
+<link rel="alternate" type="application/rss+xml" title="The Independent Nation of Needhamia » Feed" href="https://needhamia.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="The Independent Nation of Needhamia » Comments Feed" href="https://needhamia.com/comments/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/needhamia.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.8"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./Create a Jersey web project using Maven, Tomcat, and Eclipse _ The Independent Nation of Needhamia_files/wp-emoji-release.min.js.download" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="twentyfourteen-lato-css" href="./Create a Jersey web project using Maven, Tomcat, and Eclipse _ The Independent Nation of Needhamia_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="genericons-css" href="./Create a Jersey web project using Maven, Tomcat, and Eclipse _ The Independent Nation of Needhamia_files/genericons.css" type="text/css" media="all">
+<link rel="stylesheet" id="twentyfourteen-style-css" href="./Create a Jersey web project using Maven, Tomcat, and Eclipse _ The Independent Nation of Needhamia_files/style.css" type="text/css" media="all">
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentyfourteen-ie-css'  href='https://needhamia.com/wp-content/themes/twentyfourteen/css/ie.css?ver=20131205' type='text/css' media='all' />
+<![endif]-->
+<script type="text/javascript" src="./Create a Jersey web project using Maven, Tomcat, and Eclipse _ The Independent Nation of Needhamia_files/jquery.js.download"></script>
+<script type="text/javascript" src="./Create a Jersey web project using Maven, Tomcat, and Eclipse _ The Independent Nation of Needhamia_files/jquery-migrate.min.js.download"></script>
+<link rel="https://api.w.org/" href="https://needhamia.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://needhamia.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://needhamia.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 4.9.8">
+<link rel="canonical" href="https://needhamia.com/how-to/java-software-development/create-a-jersey-web-project-using-maven-tomcat-and-eclipse/">
+<link rel="shortlink" href="https://needhamia.com/?p=365">
+<link rel="alternate" type="application/json+oembed" href="https://needhamia.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fneedhamia.com%2Fhow-to%2Fjava-software-development%2Fcreate-a-jersey-web-project-using-maven-tomcat-and-eclipse%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://needhamia.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fneedhamia.com%2Fhow-to%2Fjava-software-development%2Fcreate-a-jersey-web-project-using-maven-tomcat-and-eclipse%2F&amp;format=xml">
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #000000; }
+</style>
+<style type="text/css">:root a[href^="http://www.drowle.com/"], :root #header + #content > #left > #rlblock_left, :root #\5f _mom_ad_2, :root #rhs_block .mod > .luhb-div > div[data-async-type="updateHotelBookingModule"], :root #\5f _admvnlb_modal_container, :root a[href^="http://keep2share.cc/pr/"], :root #MAIN.ShowTopic > .ad, :root #\5f _mom_ad_12, :root #center_col > #main > .dfrd > .mnr-c > .c._oc._zs, :root a[href^="https://t.mobtya.com/"], :root [id*="MGWrap"], :root aside[itemtype="https://schema.org/WPAdBlock"], :root .__y_elastic .__y_item, :root a[href^="http://ul.to/ref/"], :root #\5f _nq__hh[style="display:block!important"], :root a[href^="http://ads.pheedo.com/"], :root a[href^="http://landingpagegenius.com/"], :root aside[id^="advads_ad_widget-"], :root .inlineNewsletterSubscription + .inlineNewsletterSubscription div[class$="_item"], :root #ads > .dose > .dosesingle, :root a[href^="http://lp.ncdownloader.com/"], :root a[href^="http://www.getyourguide.com/?partner_id="], :root a[href^="http://media.paddypower.com/redirect.aspx?"], :root a[href^="http://www.adskeeper.co.uk/"], :root #assetsListings[style="display: block;"], :root a[href^="http://b.bestcompleteusa.info/"], :root #main-content > [style="padding:10px 0 0 0 !important;"], :root #center_col > #\5f Emc, :root a[href^="http://easydownload4you.com/"], :root a[href^="http://secure.signup-way.com/"], :root #center_col > #res > #topstuff + #search > div > #ires > #rso > #flun, :root a[href^="http://cdn3.adexprts.com/"], :root a[href^="http://web.adblade.com/"], :root a[href^="http://www.affbuzzads.com/affiliate/"], :root #center_col > #resultStats + #tads, :root #center_col > #resultStats + #tads + #res + #tads, :root a[href^="http://track.trkvluum.com/"], :root #cnt #center_col > #taw > #tvcap > .c._oc._Lp, :root a[href^="http://codec.codecm.com/"], :root #center_col > #resultStats + div + #res + #tads, :root div[id^="div-gpt-ad"], :root #center_col > #resultStats + div[style="border:1px solid #dedede;margin-bottom:11px;padding:5px 7px 5px 6px"], :root a[href^="http://liversely.com/"], :root #topstuff > #tads, :root a[href*="5iclx7wa4q.com"], :root #center_col > #taw > #tvcap > .rscontainer, :root a[href^="http://www.bet365.com/"][href*="?affiliate="], :root #center_col > div[style="font-size:14px;margin-right:0;min-height:5px"] > div[style="font-size:14px;margin:0 4px;padding:1px 5px;background:#fff8e7"], :root a[href^="http://fileloadr.com/"], :root .gbfwa > div[class$="_item"], :root div[id^="ad_script_"], :root a[href^="http://www.friendlyadvertisements.com/"], :root #cnt #center_col > #res > #topstuff > .ts, :root #mn div[style="position:relative"] > #center_col > ._Ak, :root a[href^="http://affiliates.pinnaclesports.com/processing/"], :root a[href*=".clksite.com/"], :root #content > #center > .dose > .dosesingle, :root #content > #right > .dose > .dosesingle, :root a[href^="http://buysellads.com/"], :root a[href^="http://fsoft4down.com/"], :root #flowplayer > div[style="position: absolute; width: 300px; height: 275px; left: 222.5px; top: 85px; z-index: 999;"], :root #mn #center_col > div > h2.spon:first-child + ol:last-child, :root a[href^="http://www.easydownloadnow.com/"], :root a[href*="emprestimo.eu"], :root a[href^="http://n217adserv.com/"], :root .rc-cta[data-target], :root div[id^="ads120_600-widget"], :root #flowplayer > div[style="z-index: 208; position: absolute; width: 300px; height: 275px; left: 222.5px; top: 85px;"], :root a[href^="http://c.ketads.com/"], :root .GB3L-QEDGY .GB3L-QEDF- > .GB3L-QEDE-, :root #main_col > #center_col div[style="font-size:14px;margin:0 4px;padding:1px 5px;background:#fff7ed"], :root a[href^="http://www.usearchmedia.com/signup?"], :root .__zinit .__y_item, :root a[href^="http://banners.victor.com/processing/"], :root #mbEnd[cellspacing="0"][cellpadding="0"], :root a[href^="http://ads.sprintrade.com/"], :root #mn #center_col > div > h2.spon:first-child, :root #rhs_block > .ts[cellspacing="0"][cellpadding="0"][style="padding:0"], :root a[href^="http://farm.plista.com/pets"], :root .__yinit .__y_item, :root #mn div[style="position:relative"] > #center_col > div > ._dPg, :root a[href^="https://www.firstload.com/affiliate/"], :root #resultspanel > #topads, :root #rhs_block > #mbEnd, :root a[href^="http://www.faceporn.net/free?"], :root a[href^="http://uploaded.net/ref/"], :root #rhs_block .mod > .gws-local-hotels__booking-module, :root a[href^="http://jobitem.org/"], :root a[href^="http://www.fbooksluts.com/"], :root #rhs_block .xpdopen > ._OKe > div > .mod > ._yYf, :root #rhs_block > ol > .rhsvw > .kp-blk > .xpdopen > ._OKe > ol > ._DJe > .luhb-div, :root a[href^="http://www.moneyducks.com/"], :root .trc_rbox_div .syndicatedItem, :root a[href^="http://websitedhoome.com/"], :root .mw > #rcnt > #center_col > #taw > #tvcap > .c, :root a[href^="http://ad.yieldmanager.com/"], :root .lads[width="100%"][style="background:#FFF8DD"], :root a[href^="http://taboola-"][href*="/redirect.php?app.type="], :root #rhs_block > script + .c._oc._Ve.rhsvw, :root #tads + div + .c, :root a[href^="http://www.uniblue.com/cm/"], :root a[href^="https://mk-ads.com/"], :root #rhswrapper > #rhssection[border="0"][bgcolor="#ffffff"], :root a[href^="http://ads.betfair.com/redirect.aspx?"], :root #ssmiwdiv[jsdisplay], :root a[href^="http://adserver.itsfogo.com/"], :root .__ywl .__y_item, :root .GFYY1SVD2 > .GFYY1SVC2 > .GFYY1SVF5, :root a[href^="http://9nl.es/"], :root a[href^="http://ads.activtrades.com/"], :root .GHOFUQ5BG2 > .GHOFUQ5BF2 > .GHOFUQ5BG5, :root div[id^="mainads"], :root .GFYY1SVE2 > .GFYY1SVD2 > .GFYY1SVG5, :root .jobs-information-call-to-action + .jobs-information-call-to-action div[class$="_item"], :root .GJJKPX2N1 > .GJJKPX2M1 > .GJJKPX2P4, :root a[href^="http://clickandjoinyourgirl.com/"], :root a[href^="http://www.terraclicks.com/"], :root a[href^="http://go.oclaserver.com/"], :root a[href^="http://paid.outbrain.com/network/redir?"], :root .GKJYXHBF2 > .GKJYXHBE2 > .GKJYXHBH5, :root .GPMV2XEDA2 > .GPMV2XEDP1 > .GPMV2XEDJBB, :root a[href^="http://www.streamtunerhd.com/signup?"], :root .Mpopup + #Mad > #MadZone, :root .__y_inner > .__y_item, :root .__ywvr .__y_item, :root .ch[onclick="ga(this,event)"], :root .icons-rss-feed + .icons-rss-feed div[class$="_item"], :root .l-container > #fishtank, :root a[href^="http://hyperlinksecure.com/go/"], :root a[href^="http://www.epicgameads.com/"], :root .mod > ._jH + .rscontainer, :root .mw > #rcnt > #center_col > #taw > .c, :root a[href^="http://clicks.binarypromos.com/"], :root a[href^="http://xads.zedo.com/"], :root .nrelate .nr_partner, :root .ob_container .item-container-obpd, :root a[href^="http://www.paddypower.com/?AFF_ID="], :root a[href*=".clkcln.com/"], :root .ob_dual_right > .ob_ads_header ~ .odb_div, :root .plistaList > .itemLinkPET, :root a[href^="http://adtransfer.net/"], :root a[href^="http://bcp.crwdcntrl.net/"], :root .plistaList > .plista_widget_underArticle_item[data-type="pet"], :root a[href^="http://www.pinkvisualgames.com/?revid="], :root .plista_widget_belowArticleRelaunch_item[data-type="pet"], :root a[href*=".revimedia.com/"], :root a[href^="http://abc2.mobile-10.com/"], :root .ra[align="left"][width="30%"], :root .ra[align="right"][width="30%"], :root .ra[width="30%"][align="right"] + table[width="70%"][cellpadding="0"], :root .rhsvw[style="background-color:#fff;margin:0 0 14px;padding-bottom:1px;padding-top:1px;"], :root .rscontainer > .ellip, :root a[href^="http://record.sportsbetaffiliates.com.au/"], :root a[href^="http://www.fducks.com/"], :root .section-result[data-result-ad-type], :root a[href^="http://cinema.friendscout24.de?"], :root .trc_rbox .syndicatedItem, :root .trc_rbox_border_elm .syndicatedItem, :root .trc_rbox_div .syndicatedItemUB, :root .trc_rbox_div a[target="_blank"][href^="http://tab"], :root .trc_related_container div[data-item-syndicated="true"], :root .widget-pane-section-result[data-result-ad-type], :root a[href*="a2g-secure.com"], :root a[href^="http://www.ringtonematcher.com/"], :root div[id^="dmRosAdWrapper"], :root a[href^="http://ddownload39.club/"], :root AD-TRIPLE-BOX, :root div[id^="div-adtech-ad-"], :root ADS-RIGHT, :root div[id^="div_openx_ad_"], :root AFS-AD, :root a[href^="//srv.buysellads.com/"], :root AMP-AD, :root a[href^="http://rekoverr.com/"], :root A[href^="https://www.friendlyduck.com/AF_"], :root a[href^="//40ceexln7929.com/"], :root DFP-AD, :root FBS-AD, :root LEADERBOARD-AD, :root a[href^="http://ad.au.doubleclick.net/"], :root a[href*="deliver.trafficfabrik.com"], :root a[href^="http://engine.newsmaxfeednetwork.com/"], :root [ad-id^="googlead"], :root [id*="MarketGid"], :root a[href^="http://1phads.com/"], :root [id*="ScriptRoot"], :root a[href*="letsadvertisetogether.com"], :root [id^="bunyad_ads_"], :root a[onmousedown^="this.href='http://staffpicks.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root [lazy-ad="lefttop_banner"], :root [onclick*="content.ad/"], :root a[href^="http://c.jumia.io/"], :root a[href^="http://pokershibes.com/index.php?ref="], :root [onclick^="window.open('http://adultfriendfinder.com/search/"], :root iframe[src^="http://static.mozo.com.au/strips/"], :root div[id^="dfp-ad-"], :root [onclick^="window.open('window.open('//delivery.trafficfabrik.com/"], :root a[data-redirect^="https://paid.outbrain.com/network/redir?"], :root a[href^="http://www.myfreepaysite.com/sfw.php?aid"], :root a[href^="http://dethao.com/"], :root a[href^=" http://n47adshostnet.com/"], :root a[href^="http://ryushare.com/affiliate.python"], :root aside[id^="adrotate_widgets-"], :root a[data-obtrack^="http://paid.outbrain.com/network/redir?"], :root a[data-oburl^="http://paid.outbrain.com/network/redir?"], :root a[href^="http://get.slickvpn.com/"], :root a[data-oburl^="https://paid.outbrain.com/network/redir?"], :root a[data-redirect^="http://click.plista.com/pets"], :root a[href^="http://affiliate.godaddy.com/"], :root a[data-redirect^="http://paid.outbrain.com/network/redir?"], :root a[href^="http://www.cdjapan.co.jp/aff/click.cgi/"], :root div[class^="lifeOnwerAd"], :root a[data-redirect^="this.href='http://paid.outbrain.com/network/redir?"], :root a[href^="http://adclick.g.doubleclick.net/"], :root a[data-url^="http://paid.outbrain.com/network/redir?"], :root a[data-url^="http://paid.outbrain.com/network/redir?"] + .author, :root a[href^="http://hd-plugins.com/download/"], :root a[data-widget-outbrain-redirect^="http://paid.outbrain.com/network/redir?"], :root a[href$="/vghd.shtml"], :root a[href^="https://intrev.co/"], :root a[href*=".adk2x.com/"], :root a[href^="http://mmo123.co/"], :root a[href*=".adsrv.eacdn.com/"] > img, :root a[href*="/cmd.php?ad="], :root td[valign="top"] > .mainmenu[style="padding:10px 0 0 0 !important;"], :root a[href*=".approvallamp.club/"], :root a[href^="http://bluehost.com/track/"], :root a[href*=".bang.com/"][href*="&aff="], :root a[href*=".ichlnk.com/"], :root a[href^="http://www.my-dirty-hobby.com/?sub="], :root a[href*=".inclk.com/"], :root a[href*="=adscript"], :root a[href^="http://www.fleshlight.com/"], :root a[href^="https://tracking.truthfinder.com/?a="], :root a[href*=".intab.fun/"], :root a[href^="http://k2s.cc/pr/"], :root a[href*=".qertewrt.com/"], :root a[href^="https://servedbyadbutler.com/"], :root a[href*=".trust.zone"], :root a[href^="http://xtgem.com/click?"], :root a[href^="http://dwn.pushtraffic.net/"], :root a[href*="/adServe/banners?"], :root a[href^="http://www.ducksnetwork.com/"], :root a[href*="/adrotate-out.php?"], :root a[href^="http://lp.ezdownloadpro.info/"], :root a[href*="/servlet/click/zone?"], :root a[href*="=Adtracker"], :root a[href*="=exoclick"], :root a[href*="ad2upapp.com/"], :root a[href^="http://mgid.com/"], :root a[href^="http://www.freefilesdownloader.com/"], :root a[href^=" http://ads.ad-center.com/"], :root a[href^="http://ads.integral-marketing.com/"], :root a[href^="http://data.ad.yieldmanager.net/"], :root div[class*="-storyBodyAd-"], :root a[href*="delivery.trafficfabrik.com"], :root div[class^="ads-partner-"], :root a[href*="googleme.eu"], :root a[href^="//tracking.content-recommendation.net/"][href*="/sponsored/click.html?"], :root a[href*="onclkds."], :root a[href*="pussl3.com"], :root a[href="http://track.freemmo2017.com/"], :root a[href^=" http://www.sex.com/"][href*="&utm_"], :root a[href^="http://srvpub.com/"], :root a[href^="http://fileupnow.rocks/"], :root a[href^="//00ae8b5a9c1d597.com/"], :root a[href^="//5e1fcb75b6d662d.com/"], :root a[href^="http://go.ad2up.com/"], :root a[href^="//88d7b6aa44fb8eb.com/"], :root a[href^="//adbit.co/?a=Advertise&"], :root a[href^="http://www.roboform.com/php/land.php"], :root a[href^="//ads.ad-center.com/"], :root a[href^="//api.ad-goi.com/"], :root a[href^="//bwnjijl7w.com/"], :root a[href^="https://www.camsoda.com/enter.php?id="], :root a[href^="//db52cc91beabf7e8.com/"], :root a[href^="//go.onclasrv.com/"], :root a[href^="//go.vedohd.org/"], :root a[href^="http://www.revenuehits.com/"], :root a[href^="//jsmptjmp.com/"], :root a[onmousedown^="this.href='/wp-content/embed-ad-content/"], :root a[href^="//medleyads.com/spot/"], :root a[target="_blank"][href^="http://api.taboola.com/"], :root a[href^="//nlkdom.com/"], :root a[href^="http://hdplugin.flashplayer-updates.com/"], :root a[href^="//porngames.adult/?SID="], :root a[href^="http://adtrackone.eu/"], :root a[href^="//t.MtagMonetizationA.com/"], :root a[href^="http://www.fpcTraffic2.com/blind/in.cgi?"], :root a[href^="//www.mgid.com/"], :root a[href^="http://www.babylon.com/welcome/index?affID"], :root a[href^="http://ads.affbuzzads.com/"], :root a[href^="https://fileboom.me/pr/"], :root a[href^="//z6naousb.com/"], :root a[href^="//zenhppyad.com/"], :root div[id^="ads250_250-widget"], :root a[href^="http://2pxg8bcf.top/"], :root a[href^="https://www.share-online.biz/affiliate/"], :root a[href^="http://internalredirect.site/"], :root a[href^="http://360ads.go2cloud.org/"], :root a[href^="http://3wr110.net/"], :root a[href^="http://9amq5z4y1y.com/"], :root a[href^="http://www.1clickmoviedownloader.info/"], :root a[href^="http://server.cpmstar.com/click.aspx?poolid="], :root a[href^="http://www.menaon.com/installs/"], :root a[href^="http://NowDownloadAll.com"], :root a[href^="http://a.adquantix.com/"], :root a[href^="http://ad-apac.doubleclick.net/"], :root a[href^="http://prousa.work/"], :root a[href^="http://fusionads.net"], :root a[href^="http://ad-emea.doubleclick.net/"], :root a[href^="http://ad.doubleclick.net/"], :root a[href^="http://adexprt.me/"], :root a[href^="http://feedads.g.doubleclick.net/"], :root a[href^="http://adf.ly/?id="], :root a[href^="http://api.ringtonematcher.com/"], :root a[href^="http://adfarm.mediaplex.com/"], :root a[href^="http://www.clkads.com/adServe/"], :root a[href^="http://adlev.neodatagroup.com/"], :root a[href^="http://wgpartner.com/"], :root div[id^="ad_bigbox_"], :root a[href^="http://admingame.info/"], :root a[href^="http://ads2.williamhill.com/redirect.aspx?"], :root div[class^="ad_position_"], :root a[href^="http://adprovider.adlure.net/"], :root a[href^="http://adrunnr.com/"], :root a[href^="http://www.sfippa.com/"], :root div[id^="div_ad_stack_"], :root a[href^="https://paid.outbrain.com/network/redir?"], :root a[href^="http://ads.ad-center.com/"], :root div[id^="ad-position-"], :root a[href^="http://www.download-provider.org/"], :root a[href^="https://trackjs.com/?utm_source"], :root a[href^="http://ads.expekt.com/affiliates/"], :root a[href^="http://adserver.adtech.de/"], :root a[href^="http://adserver.adtechus.com/"], :root a[href^="http://cdn.adstract.com/"], :root a[href^="http://www.adxpansion.com"], :root a[href^="http://www.socialsex.com/"], :root iframe[src^="http://cdn1.adexprt.com/"], :root div[id^="adspot-"], :root a[href^="http://adserving.liveuniversenetwork.com/"], :root a[href^="http://adserving.unibet.com/"], :root a[href^="https://www.goldenfrog.com/vyprvpn?offer_id="][href*="&aff_id="], :root a[href^="http://www.installads.net/"], :root a[href^="https://dediseedbox.com/clients/aff.php?"], :root a[href^="http://adsrv.keycaptcha.com"], :root a[href^="http://clickserv.sitescout.com/"], :root a[href^="http://adtrack123.pl/"], :root a[href^="http://adultfriendfinder.com/p/register.cgi?pid="], :root a[href^="http://aff.ironsocket.com/"], :root div[id^="yandex_ad"], :root a[href^="http://affiliate.coral.co.uk/processing/"], :root a[href^="http://affiliate.glbtracker.com/"], :root a[href^="http://affiliates.score-affiliates.com/"], :root a[href^="http://aflrm.com/"], :root div[id^="ads300_100-widget"], :root aside[id^="div-gpt-ad"], :root a[href^="http://www.dealcent.com/register.php?affid="], :root a[href^="http://www.greenmangaming.com/?tap_a="], :root a[href^="http://amzn.to/"] > img[src^="data"], :root a[href^="http://mojofun.info/"], :root a[href^="http://record.betsafe.com/"], :root a[href^="http://anonymous-net.com/"], :root a[href^="http://api.content.ad/"], :root a[href^="http://at.atwola.com/"], :root a[href^="https://www.dsct1.com/"], :root a[href^="http://bc.vc/?r="], :root a[href^="http://games.ucoz.ru/"][target="_blank"], :root a[href^="http://bcntrack.com/"], :root a[href^="http://www.bet365.com/"][href*="&affiliate="], :root a[href^="http://bestorican.com/"], :root a[href^="http://betahit.click/"], :root a[href^="http://campeeks.com/"][href*="&utm_"], :root a[href^="http://bonusfapturbo.nmvsite.com/"], :root a[href^="http://bs.serving-sys.com/"], :root a[href^="http://www.downloadthesefiles.com/"], :root a[href^="http://c.actiondesk.com/"], :root a[href^="http://goldmoney.com/?gmrefcode="], :root a[href^="http://callville.xyz/"], :root a[href^="http://campaign.bharatmatrimony.com/cbstrack/"], :root a[href^="http://campaign.bharatmatrimony.com/track/"], :root a[href^="http://casino-x.com/?partner"], :root a[href^="http://secure.signup-page.com/"], :root a[href^="http://cdn.adsrvmedia.net/"], :root a[href^="http://lp.ilivid.com/"], :root a[href^="http://cdn3.adbrau.com/"], :root a[href^="http://t.mdn2015x2.com/"], :root a[href^="http://www.accuserveadsystem.com/accuserve-go.php?"], :root a[style="display:block;width:300px;min-height:250px"][href^="http://li.cnet.com/click?"], :root a[href^="http://centertrust.xyz/"], :root a[href^="http://chaturbate.com/affiliates/"], :root div[id^="ads300_600-widget"], :root a[href^="http://click.guamwnvgashbkashawhgkhahshmashcas.pw/"], :root a[href^="http://ethfw0370q.com/"], :root a[href^="http://www5.smartadserver.com/call/pubjumpi/"], :root a[href^="http://click.plista.com/pets"], :root a[href^="http://clicks.guamwnvgashbkashawhgkhahshmashcas.pw/"], :root a[href^="http://www.hitcpm.com/"], :root a[href^="http://clk.directrev.com/"], :root a[href^="http://clkmon.com/adServe/"], :root a[href^="http://connectlinking6.com/"], :root a[href^="http://contractallsticker.net/"], :root a[href^="http://cpaway.afftrack.com/"], :root a[href^="http://onclickads.net/"], :root a[href^="http://cwcams.com/landing/click/"], :root a[href^="http://d2.zedo.com/"], :root a[href^="http://data.committeemenencyclopedicrepertory.info/"], :root a[href^="https://ad.atdmt.com/"], :root a[href^="https://adhealers.com/"], :root a[href^="http://www.fonts.com/BannerScript/"], :root a[href^="http://data.linoleictanzaniatitanic.com/"], :root a[href^="http://databass.info/"], :root a[href^="http://dftrck.com/"], :root a[href^="http://down1oads.com/"], :root a[href^="http://www.torntvdl.com/"], :root input[onclick^="window.open('http://www.friendlyduck.com/"], :root a[href^="http://download-performance.com/"], :root a[href^="http://duckcash.eu/"], :root a[href^="http://eclkmpsa.com/"], :root a[href^="http://elite-sex-finder.com/?"], :root a[href^="http://www.downloadplayer1.com/"], :root a[href^="http://elitefuckbook.com/"], :root a[href^="http://extra.bet365.com/"][href*="?affiliate="], :root a[href^="http://t.wowtrk.com/"], :root a[href^="http://feeds1.validclick.com/"], :root a[href^="http://ffxitrack.com/"], :root a[href^="http://finaljuyu.com/"], :root a[href^="http://findersocket.com/"], :root a[href^="http://go.mobisla.com/"], :root a[href^="http://freesoftwarelive.com/"], :root a[href^="http://g1.v.fwmrm.net/ad/"], :root a[href^="http://t.mdn2015x1.com/"], :root a[href^="http://galleries.pinballpublishernetwork.com/"], :root iframe[id^="google_ads_iframe"], :root a[href^="http://galleries.securewebsiteaccess.com/"], :root a[href^="http://gca.sh/user/register?ref="], :root a[href^="http://www.affiliates1128.com/processing/"], :root a[href^="http://getlinksinaseconds.com/"], :root a[href^="http://go.seomojo.com/tracking202/"], :root a[href^="http://green.trafficinvest.com/"], :root a[href^="http://greensmoke.com/"], :root a[href^="http://promos.bwin.com/"], :root a[href^="http://n.admagnet.net/"], :root a[href^="http://guideways.info/"], :root a[href^="http://hpn.houzz.com/"], :root a[href^="http://www.coinducks.com/"], :root a[href^="http://hyperies.info/"], :root a[href^="http://imads.integral-marketing.com/"], :root div[id^="ADV-SLOT-"], :root a[href^="http://install.securewebsiteaccess.com/"], :root a[href^="http://www.sex.com/?utm_"], :root a[href^="http://istri.it/?"], :root a[href^="http://join3.bannedsextapes.com/track/"], :root a[href^="http://k2s.cc/code/"], :root a[href^="http://www.yourfuckbook.com/?"], :root a[href^="http://latestdownloads.net/download.php?"], :root a[href^="http://linksnappy.com/?ref="], :root a[href^="http://liversely.net/"], :root a[href^="http://www.tirerack.com/affiliates/"], :root a[href^="http://marketgid.com"], :root a[href^="https://www.financeads.net/tc.php?"], :root a[href^="https://pubads.g.doubleclick.net/"], :root a[href^="http://www.idownloadplay.com/"], :root a[href^="http://mo8mwxi1.com/"], :root a[href^="http://www.flashx.tv/downloadthis"], :root a[href^="http://online.ladbrokes.com/promoRedirect?"], :root div[class^="ResponsiveAd-"], :root a[href^="http://pan.adraccoon.com?"], :root div[id^="MarketGid"], :root a[href^="http://papi.mynativeplatform.com:80/pub2/"], :root a[href^="http://www.graboid.com/affiliates/"], :root a[href^="http://partner.sbaffiliates.com/"], :root div[class^="pane-google-admanager-"], :root a[href^="http://prochina.link/"], :root a[href^="http://serve.williamhill.com/promoRedirect?"], :root a[href^="http://prochina.space/"], :root a[href^="http://www.1clickdownloader.com/"], :root div[class^="Ad__bigBox"], :root a[href^="http://pubads.g.doubleclick.net/"], :root a[href^="http://pwrads.net/"], :root a[href^="http://www.brightwheel.info/"], :root a[href^="http://record.commissionking.com/"], :root a[href^="http://refer.webhostingbuzz.com/"], :root a[href^="http://tezfiles.com/pr/"], :root a[href^="http://searchtabnew.com/"], :root a[href^="http://secure.hostgator.com/~affiliat/"], :root a[href^="http://webgirlz.online/landing/"], :root a[href^="http://see-work.info/"], :root a[href^="http://servicegetbook.net/"], :root a[href^="http://www.sex.com/pics/?utm_"], :root a[href^="http://sharesuper.info/"], :root a[href^="http://www.badoink.com/go.php?"], :root a[href^="http://stateresolver.link/"], :root a[href^="http://steel.starflavor.bid/"], :root a[href^="https://dcs.adgear.com/clicks/"], :root a[href^="http://syndication.exoclick.com/"], :root a[href^="https://track.healthtrader.com/"], :root a[href^="http://t.mdn2015x3.com/"], :root a[href^="http://tour.affbuzzads.com/"], :root a[href^="http://track.adform.net/"], :root a[href^="http://track.affiliatenetwork.co.za/"], :root a[href^="http://wxdownloadmanager.com/dl/"], :root a[href^="http://track.incognitovpn.com/"], :root a[href^="http://tracker.mybroadband.co.za/"], :root a[href^="http://www.pheedo.com/"], :root div[data-spotim-slot], :root div[class^="ad_border_"], :root a[href^="http://tracking.crazylead.com/"], :root a[href^="http://www.friendlyquacks.com/"], :root a[href^="http://tracking.deltamediallc.com/"], :root a[href^="http://tracking.toroadvertising.com/"], :root a[href^="https://go.stripchat.com/"][href*="&campaignId="], :root a[href^="http://us.marketgid.com"], :root a[href^="http://www.firstload.com/affiliate/"], :root a[href^="http://y1jxiqds7v.com/"], :root a[href^="http://webtrackerplus.com/"], :root a[href^="http://wopertific.info/"], :root a[href^="http://www.123-reg.co.uk/affiliate2.cgi"], :root a[href^="http://www.TwinPlan.com/AF_"], :root a[href^="http://www.bitlord.me/share/"], :root a[href^="http://www.adbrite.com/mb/commerce/purchase_form.php?"], :root a[href^="http://www.adshost2.com/"], :root div > [class][onclick*=".updateAnalyticsEvents"], :root a[href^="http://www.afco2go.com/srv.php?"], :root a[href^="http://www.afgr3.com/"], :root a[href^="http://www.amazon.co.uk/exec/obidos/external-search?"], :root a[href^="http://www.liversely.net/"], :root a[href^="http://www.bluehost.com/track/"] > img, :root div[id^="advads_"], :root a[href^="http://www.cash-duck.com/"], :root a[href^="https://chaturbate.com/in/?track="], :root a[href^="http://www.clickansave.net/"], :root a[href^="http://www.dl-provider.com/search/"], :root a[href^="http://www.duckssolutions.com/"], :root div[id^="div-ads-"], :root a[href^="http://www.down1oads.com/"], :root a[href^="http://www.downloadweb.org/"], :root a[href^="http://www.duckcash.eu/"], :root a[href^="http://www.firstclass-download.com/"], :root a[href^="http://www.quick-torrent.com/download.html?aff"], :root a[href^="http://www.firstload.de/affiliate/"], :root a[href^="https://prf.hn/click/"][href*="/adref:"], :root a[href^="http://www.gamebookers.com/cgi-bin/intro.cgi?"], :root a[href^="http://www.incredimail.com/?id="], :root a[href^="http://www.on2url.com/app/adtrack.asp"], :root a[href^="http://www.ireel.com/signup?ref"], :root a[href^="http://www.zergnet.com/i/"], :root a[href^="http://www.plus500.com/?id="], :root a[href^="http://www.linkbucks.com/referral/"], :root a[href^="http://www.liutilities.com/"], :root iframe[id^="google_ads_frame"], :root a[href^="http://www.mobileandinternetadvertising.com/"], :root a[href^="http://www.myfreecams.com/?co_id="][href*="&track="], :root a[onmousedown^="this.href='http://staffpicks.outbrain.com/network/redir?"][target="_blank"], :root a[href^="http://www.myfreepaysite.com/sfw_int.php?aid"], :root a[href^="http://www.mysuperpharm.com/"], :root a[href^="http://www.sex.com/videos/?utm_"], :root a[href^="https://ad.doubleclick.net/"], :root a[href^="http://www.myvpn.pro/"], :root a[href^="http://www.pinkvisualpad.com/?revid="], :root a[href^="http://www.ragazzeinvendita.com/?rcid="], :root a[href^="http://www.richducks.com/"], :root a[href^="https://dltags.com/"], :root a[href^="http://www.securegfm.com/"], :root a[href^="http://www.seekbang.com/cs/"], :root a[href^="http://www.sexgangsters.com/?pid="], :root a[href^="http://www.streamate.com/exports/"], :root a[href^="http://www.text-link-ads.com/"], :root a[href^="http://www.torntv-downloader.com/"], :root a[href^="http://www.twinplan.com/AF_"], :root a[href^="https://porndeals.com/?track="], :root a[href^="http://www.urmediazone.com/signup"], :root a[href^="http://www.wantstraffic.com/"], :root a[href^="http://www.webtrackerplus.com/"], :root a[href^="http://www.xmediaserve.com/"], :root a[href^="http://www1.clickdownloader.com/"], :root a[href^="http://yads.zedo.com/"], :root a[href^="http://z1.zedo.com/"], :root div[id^="ad-server-"], :root a[href^="http://zevera.com/afi.html"], :root a[href^="https://aaucwbe.com/"], :root a[href^="https://ads.ad4game.com/"], :root a[href^="https://adswick.com/"], :root a[href^="https://affiliates.bet-at-home.com/processing/"], :root a[href^="https://atomidownload.com/"], :root a[href^="https://awentw.com/"], :root a[href^="https://betway.com/"][href*="&a="], :root a[href^="https://bs.serving-sys.com"], :root a[href^="https://chaturbate.com/affiliates/"], :root a[href^="https://chaturbate.com/in/?tour="], :root a[href^="https://click.plista.com/pets"], :root a[href^="https://control.trafficfabrik.com/"], :root a[href^="https://evaporate.pw/"], :root a[href^="https://farm.plista.com/pets"], :root a[href^="https://go.ad2up.com/"], :root a[href^="https://go.onclasrv.com/"], :root a[href^="https://keep2share.cc/pr/"], :root a[href^="https://members.linkifier.com/public/affiliateLanding?refCode="], :root a[href^="https://redirect.ero-advertising.com/"], :root div[id^="ad-cid-"], :root a[href^="https://secure.adnxs.com/clktrb?"], :root a[href^="https://secure.eveonline.com/ft/?aid="], :root a[href^="https://syndication.exoclick.com/splash.php?"], :root a[href^="https://torguard.net/aff.php"], :root a[href^="https://track.adform.net/"], :root a[href^="https://track.clickmoi.xyz/"], :root a[href^="https://trklvs.com/"], :root a[href^="https://trust.zone/go/r.php?RID="], :root a[href^="https://understandsolar.com/signup/?lead_source="][href*="&tracking_code="], :root a[href^="https://windscribe.com/promo/"], :root a[href^="https://www.adskeeper.co.uk/"], :root a[href^="https://www.bebi.com"], :root a[href^="https://www.camyou.com/?cam="][href*="&track="], :root a[href^="https://www.googleadservices.com/pagead/aclk?"], :root a[href^="https://www.oboom.com/ad/"], :root a[href^="https://www.popads.net/users/"], :root a[href^="https://www.secureupload.eu/suprerefid="], :root a[href^="https://www.spyoff.com/"], :root a[onclick*="//m.economictimes.com/etmack/click.htm"], :root a[onmousedown^="this.href='http://paid.outbrain.com/network/redir?"][target="_blank"], :root a[onmousedown^="this.href='http://paid.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"], :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root a[target="_blank"][onmousedown="this.href^='http://paid.outbrain.com/network/redir?"], :root bottomadblock, :root div[class^="BlockAdvert-"], :root div[class$="dealnews"] > .dealnews, :root div[class*="_AdInArticle_"], :root div[class^="Ad__adContainer"], :root div[class^="Ad__container"], :root div[class^="AdhesionAd_"], :root div[class^="adbanner_"], :root div[class^="adpubs-"], :root div[class^="awpcp-random-ads"], :root div[class^="block-openx-"], :root div[class^="gemini-ad"], :root div[class^="local-feed-banner-ads"], :root div[class^="proadszone-"], :root div[data-native_ad], :root div[id^="YFBMSN"], :root div[id^="acm-ad-tag-"], :root div[id^="ad-div-"], :root div[id^="adfox_"], :root div[id^="adrotate_widgets-"], :root div[id^="ads300_250-widget"], :root div[id^="advads-"], :root div[id^="advt-"], :root div[id^="block-views-topheader-ad-block-"], :root div[id^="cns_ads_"], :root div[id^="crt-"][style], :root div[id^="dfp-slot-"], :root div[id^="google_ads_iframe_"], :root div[id^="google_dfp_"], :root div[id^="lazyad-"], :root div[id^="proadszone-"], :root div[id^="q1-adset-"], :root div[id^="zergnet-widget"], :root div[itemtype="http://schema.org/WPAdBlock"], :root topadblock, :root div[itemtype="http://www.schema.org/WPAdBlock"], :root iframe[src^="http://ad.yieldmanager.com/"], :root iframe[src^="http://cdn2.adexprt.com/"], :root img[alt^="Fuckbook"], :root input[onclick^="window.open('http://www.FriendlyDuck.com/"], :root p[id^="div-gpt-ad-"], :root script[src^="http://free-shoutbox.net/app/webroot/shoutbox/sb.php?shoutbox="] + #freeshoutbox_content { display: none !important; }</style></head>
+
+<body class="page-template-default page page-id-365 page-child parent-pageid-352 custom-background header-image full-width singular masthead-fixed">
+<div id="page" class="hfeed site">
+		<div id="site-header">
+		<a href="https://needhamia.com/" rel="home">
+			<img src="./Create a Jersey web project using Maven, Tomcat, and Eclipse _ The Independent Nation of Needhamia_files/cropped-20140730_085023B2.jpg" width="1260" height="320" alt="The Independent Nation of Needhamia">
+		</a>
+	</div>
+	
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="https://needhamia.com/" rel="home">The Independent Nation of Needhamia</a></h1>
+
+			<div class="search-toggle">
+				<a href="https://needhamia.com/how-to/java-software-development/create-a-jersey-web-project-using-maven-tomcat-and-eclipse/#search-container" class="screen-reader-text" aria-expanded="false" aria-controls="search-container">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="https://needhamia.com/how-to/java-software-development/create-a-jersey-web-project-using-maven-tomcat-and-eclipse/#content">Skip to content</a>
+				<div id="primary-menu" class="nav-menu"><ul>
+<li class="page_item page-item-925"><a href="https://needhamia.com/contact/">Contact</a></li>
+<li class="page_item page-item-344 page_item_has_children current_page_ancestor"><a href="https://needhamia.com/how-to/">How To</a>
+<ul class="children">
+	<li class="page_item page-item-386"><a href="https://needhamia.com/how-to/create-a-static-web-project-using-eclipse/">Create a Static web project using Eclipse</a></li>
+	<li class="page_item page-item-844"><a href="https://needhamia.com/how-to/design-and-print-using-open-source-freecad-cura-and-lulzbot-taz-5/">Design and Print using Open Source FreeCAD, Cura, and Lulzbot Taz 5</a></li>
+	<li class="page_item page-item-1282"><a href="https://needhamia.com/how-to/how-to-play-25-lotus-leaves/">How to Play 25 Lotus Flowers</a></li>
+	<li class="page_item page-item-352 page_item_has_children current_page_ancestor current_page_parent"><a href="https://needhamia.com/how-to/java-software-development/">Java Software Development</a>
+	<ul class="children">
+		<li class="page_item page-item-365 current_page_item"><a href="https://needhamia.com/how-to/java-software-development/create-a-jersey-web-project-using-maven-tomcat-and-eclipse/">Create a Jersey web project using Maven, Tomcat, and Eclipse</a></li>
+		<li class="page_item page-item-346"><a href="https://needhamia.com/how-to/java-software-development/how-to-install-and-configure-eclipse-for-java-ee-development/">Install and configure Eclipse for Java EE development</a></li>
+		<li class="page_item page-item-357"><a href="https://needhamia.com/how-to/java-software-development/install-and-configure-maven-for-eclipse/">Install and Configure Maven for Eclipse</a></li>
+		<li class="page_item page-item-354"><a href="https://needhamia.com/how-to/java-software-development/install-and-configure-tomcat/">Install and Configure Tomcat</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-850"><a href="https://needhamia.com/how-to/use-git-revision-control/">Use git Revision Control</a></li>
+</ul>
+</li>
+<li class="page_item page-item-2 page_item_has_children"><a href="https://needhamia.com/sample-page/">About Needhamia</a>
+<ul class="children">
+	<li class="page_item page-item-1376"><a href="https://needhamia.com/sample-page/privacy-policy/">Privacy Policy</a></li>
+</ul>
+</li>
+</ul></div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+				<form role="search" method="get" class="search-form" action="https://needhamia.com/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search …" value="" name="s">
+				</label>
+				<input type="submit" class="search-submit" value="Search">
+			</form>			</div>
+		</div>
+	</header><!-- #masthead -->
+
+	<div id="main" class="site-main">
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			
+<article id="post-365" class="post-365 page type-page status-publish hentry">
+	<header class="entry-header"><h1 class="entry-title">Create a Jersey web project using Maven, Tomcat, and Eclipse</h1></header><!-- .entry-header -->
+	<div class="entry-content">
+		<p><strong>Introduction</strong></p>
+<p><a href="https://jersey.java.net/">Jersey </a>is an open source, RESTful web service framework&nbsp;built in Java. For information on REST APIs, see <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REpresentational State Transfer</a>.</p>
+<p>Install the prerequisites</p>
+<ol>
+<li><a href="http://needhamia.com/?page_id=346">Install and configure Eclipse for Java EE development</a></li>
+<li><a href="http://needhamia.com/?page_id=354">Install and Configure Tomcat</a></li>
+<li><a href="http://needhamia.com/?page_id=357">Install and Configure Maven for Eclipse</a></li>
+<li>Don’t install Jersey. &nbsp;Maven will do that for you eventually.</li>
+</ol>
+<p><strong>Create your Maven Eclipse Web Project</strong></p>
+<p>Each time you create a new workspace, you’ll need to redo parts of the Maven setup. &nbsp;See the notes in the Maven install instructions above.</p>
+<ol>
+<li>In <strong>Eclipse</strong>,</li>
+<li>If you like, create or switch to a new, empty workspace (which is just an empty folder): Choose <strong>File</strong> / <strong>Switch Workspace</strong> / <strong>Other…</strong></li>
+<li>If Eclipse shows you Icons for&nbsp;Overview, Samples, etc., click the <strong>Workbench arrow icon</strong> in the upper-right of the screen.</li>
+<li>Select <strong>File</strong> / <strong>New</strong> / <strong>Maven Project</strong></li>
+<li>Click <strong>Next</strong></li>
+<li>In the <strong>Filter</strong> field, type&nbsp;<strong>maven-archetype-webapp</strong></li>
+<li>Wait for results to appear</li>
+<li>In <strong>Results</strong>, click on <strong>maven-archetype-webapp</strong>. There should be only one.</li>
+<li>Click <strong>Next</strong></li>
+<li>Choose a Group Id, Artifact Id, and Package name for your project.
+<ol>
+<li><strong>Group Id</strong> is a URI style domain of <strong>your organization</strong>. For example, com.mycompany</li>
+<li><strong>Artifact Id</strong> is a unique name for <strong>this project</strong>. For example, my-first-jersey-service</li>
+<li><strong>Package Id</strong> is the name of the main Java package for this project. For example, com.mycompany.myjerseyservice</li>
+</ol>
+</li>
+<li><strong>Fill in</strong> the <strong>Group Id</strong>, <strong>Artifact Id</strong>, and <strong>Package Id</strong> that you’ve chosen.</li>
+<li>Click <strong>Finish</strong></li>
+<li>As Eclipse compiles the result, some errors will appear. &nbsp;Don’t worry about that right now.</li>
+<li>in &nbsp;Eclipse’s Project Explorer pane (on the left), <strong>right-click</strong> on your <strong>project’s name</strong> and select <strong>Maven</strong> / <strong>Update Project…</strong></li>
+<li>Click <strong>OK</strong></li>
+<li><strong>Wait</strong> for the update to complete</li>
+<li>In the <strong>Project Explorer</strong>, expand your project so that the <strong>src/main</strong> folder is visible and expanded.</li>
+<li><strong>Create</strong> the <strong>src/main/java</strong> folder:
+<ol>
+<li><strong>Right-click</strong> on <strong>src/main</strong> and select <strong>New</strong> / <strong>Folder</strong></li>
+<li>For Folder Name, type <strong>java</strong></li>
+<li>Click <strong>Finish</strong></li>
+</ol>
+</li>
+<li>Create <strong>src/test</strong> and <strong>src/test/java</strong> in the same way</li>
+</ol>
+<p><strong>Add Jersey Dependencies</strong></p>
+<ol>
+<li>In <strong>Eclipse</strong>,</li>
+<li>In the <strong>Project Explorer</strong> pane, <strong>expand</strong> your project tree</li>
+<li>Double-click on <strong>pom.xml</strong></li>
+<li>In the pom.xml window, note the tabs at the bottom of that window.</li>
+<li>Click the pom.xml tab. That will show the raw XML text of the file.</li>
+<li><strong>Add</strong> the following to the <strong>dependencies section</strong> of pom.xml:<code><br>
+&lt;dependency&gt;<br>
+&lt;groupId&gt;com.sun.jersey&lt;/groupId&gt;<br>
+&lt;artifactId&gt;jersey-server&lt;/artifactId&gt;<br>
+&lt;version&gt;1.19&lt;/version&gt;<br>
+&lt;/dependency&gt;<br>
+&lt;dependency&gt;<br>
+&lt;groupId&gt;com.sun.jersey&lt;/groupId&gt;<br>
+&lt;artifactId&gt;jersey-servlet&lt;/artifactId&gt;<br>
+&lt;version&gt;1.19&lt;/version&gt;<br>
+&lt;/dependency&gt;<br>
+&lt;dependency&gt;<br>
+&lt;groupId&gt;org.apache.tomcat&lt;/groupId&gt;<br>
+&lt;artifactId&gt;servlet-api&lt;/artifactId&gt;<br>
+&lt;version&gt;6.0.44&lt;/version&gt;<br>
+&lt;/dependency&gt;<br>
+</code></li>
+<li><strong>Save</strong> the pom.xml</li>
+<li>Maven will download Jersey automatically. &nbsp;This is what Maven is good at. &nbsp;When the project has compiled, the one error you saw earlier should disappear. &nbsp;A warning about the JRE version&nbsp;will likely still remain. You can ignore that warning.</li>
+</ol>
+<p><strong>Create your first Jersey Java Class</strong></p>
+<p>Each Jersey Class is a POJO (Plain Old Java Object) containing Jersey annotations that enable it to respond to a particular set of URLs.</p>
+<ol>
+<li>In <strong>Eclipse</strong>,</li>
+<li>In the <strong>Project Explorer</strong>, expand your project so that the <strong>src/main/java</strong> folder is visible</li>
+<li>Right-click on <strong>src/main/java</strong> and select <strong>New</strong> / <strong>Other…</strong> / <strong>Class</strong></li>
+<li>Click <strong>Next</strong></li>
+<li>For the <strong>package name</strong>, type the <strong>Package Id</strong> you chose earlier</li>
+<li>For the C<strong>lass Name</strong>, type <strong>MyJerseyPage</strong> (or whatever classname you like)</li>
+<li>Click <strong>Finish</strong></li>
+<li>In the resultant MyJerseyPage.java file, add these imports:<br>
+<code><br>
+import javax.ws.rs.GET;<br>
+import javax.ws.rs.Path;<br>
+import javax.ws.rs.Produces;<br>
+import javax.ws.rs.core.MediaType;<br>
+</code></li>
+<li><strong>Edit</strong> your <strong>MyJerseyPage class</strong> definition to look like this: TODO learn how to indent code in WordPress.<code><br>
+@Path("/hello")<br>
+public class MyJerseyPage {<br>
+@GET<br>
+@Produces(MediaType.TEXT_HTML)<br>
+public String sayHtmlHello() {<br>
+return "Hello from Jersey";<br>
+}<br>
+}<br>
+</code></li>
+<li><strong>Save</strong> that file</li>
+<li>Notice that this class uses Jersey annotations, prefixed by the at-sign: Path, GET, and Produces
+<ol>
+<li><strong>Path</strong> tells Jersey what URL subtree this class responds to</li>
+<li><strong>GET</strong> tells Jersey to call this method to service a GET HTTP request on the class’s URL</li>
+<li><strong>Produces</strong> says&nbsp;what HTTP media type this method returns. &nbsp;Combined with GET, you can write multiple methods that service the same GET request, depending on what media type the web client requests.</li>
+</ol>
+</li>
+</ol>
+<p><strong>Create a Tomcat test server for your project</strong></p>
+<p>When Eclipse runs a&nbsp;project, it starts&nbsp;a new instance of Tomcat configured for just your project. &nbsp;The Runtime path to your installed Tomcat is used by Eclipse to create that Tomcat test server.</p>
+<ol>
+<li>In <strong>Eclipse</strong>,</li>
+<li>In the <strong>Project Explorer</strong>, <strong>right-click</strong> on <strong>your project</strong> name and select <strong>Properties</strong></li>
+<li>In the resultant window, select <strong>Targeted Runtimes</strong></li>
+<li>Click <strong>New</strong></li>
+<li>Select <strong>Apache Tomcat v8.0</strong></li>
+<li>Check the box labeled <strong>Create a new local server</strong></li>
+<li>Click <strong>Next</strong></li>
+<li>In the <strong>Tomcat Installation directory</strong> field, type the value of your <strong>CATALINA_HOME</strong> environment variable. For example, mine is&nbsp;C:\Program Files\Apache Software Foundation\Tomcat 8.0</li>
+<li>Click <strong>Finish</strong></li>
+<li>In the Targeted Runtimes dialog, click (mark&nbsp;the <strong>checkbox</strong>) the newly-created <strong>Apache Tomcat v8.0</strong> entry.</li>
+<li>Click <strong>OK</strong></li>
+<li>Now the Project Explorer pane should show two entries: one is your project; the other is the test server for your project.</li>
+<li>Select <strong>Window</strong> / <strong>Show View</strong> / <strong>Servers</strong>. That should show your Tomcat test server, whether it needs to be updated (“republish”) and whether it’s running or stopped.</li>
+</ol>
+<p><strong>Configure your project for Tomcat and Jersey</strong></p>
+<ol>
+<li>In <strong>Eclipse</strong>, in the Project Explorer, expand your project tree so that <strong>src/main/webapp/WEB-INF/web.xml</strong> is visible</li>
+<li>Double-click on <strong>web.xml</strong></li>
+<li>Notice the tabs at the bottom of the new view.</li>
+<li>Click on the <strong>Source</strong> <strong>tab</strong></li>
+<li>Add the following to web.xml: TODO fix the formatting<br>
+<code><br>
+&lt;servlet &gt;<br>
+&lt;servlet-name &gt;HelloWorld Jersey Service &lt;/servlet-name &gt;<br>
+&lt;servlet-class&gt;com.sun.jersey.spi.container.servlet.ServletContainer &lt;/servlet-class &gt;<br>
+&lt;init-param &gt;<br>
+&lt;param-name &gt;com.sun.jersey.config.property.packages&lt;/param-name &gt;<br>
+&lt;param-value &gt;com.mycorp.myjerseyserver&lt;/param-value &gt;<br>
+&lt;/init-param &gt;<br>
+&lt;load-on-startup &gt;1 &lt;/load-on-startup &gt;<br>
+&lt;/servlet &gt;<br>
+&lt;servlet-mapping &gt;<br>
+&lt;servlet-name &gt;HelloWorld Jersey Service &lt;/servlet-name &gt;<br>
+&lt;url-pattern &gt;/thisthat/* &lt;/url-pattern &gt;<br>
+&lt;/servlet-mapping &gt;<br>
+</code></li>
+<li><strong>Save</strong> that file</li>
+<li>&nbsp;Notice:
+<ol>
+<li>The <strong>servlet-class</strong> node tells Tomcat that Jersey is the main servlet.</li>
+<li>The <strong>url-pattern</strong> node tells Tomcat what URLs Jersey will handle.</li>
+<li>The <strong>com.jersey.config.property.packages</strong> value tells Jersey which Java package contains your Jersey-annotated code.</li>
+</ol>
+</li>
+</ol>
+<p><strong>Set up Eclipse’s Tomcat to deploy your project</strong></p>
+<ol>
+<li><strong>Right-click</strong> on your <strong>project</strong> and select <strong>Properties</strong></li>
+<li>Click on <strong>Web Project Settings</strong></li>
+<li>For <strong>Context root</strong>, type the root URL you’ve chosen for your project. &nbsp;For example, if you set Context Root to<strong> /rest</strong> all of the Jersey URLs will start with <strong>http://localhost:8080/rest</strong></li>
+<li>Click <strong>OK</strong></li>
+<li>In the confirmation dialog, click <strong>OK</strong></li>
+<li>In the <strong>Servers</strong> view, <strong>double-click</strong> on your tomcat server (<strong>Tomcat v8.0 Server at localhost</strong>)</li>
+<li>In the resultant window, notice the tabs at the bottom of the window</li>
+<li>Click the <strong>Modules tab</strong></li>
+<li>Click <strong>Add Web module…</strong></li>
+<li>In the resultant list, <strong>click</strong> on the name of <strong>your project</strong></li>
+<li>Notice that the path field matches the Context Root you just set. If you need to change your Context Root, don’t do it here. &nbsp;This is just a copy of the value in your project Context Root setting.</li>
+<li><strong>Save</strong> that Modules file</li>
+<li>In the <strong>Servers</strong> pane, <strong>right-click</strong> on your tomcat server and select <strong>Clean</strong>. I think you need to do this because you changed the module list.</li>
+</ol>
+<p>at long last…</p>
+<p><strong>Test your web page</strong></p>
+<ol>
+<li>Start the server in Debug mode: in the <strong>Servers</strong> view, <strong>right-click</strong> on the tomcat server and select <strong>Debug</strong></li>
+<li>Wait a few seconds for the server instance to start. &nbsp;You can see progress/errors in the Console view</li>
+<li>Your Jersey page url is composed of:
+<ol>
+<li>http://localhost:8080 = <strong>your PC</strong> and the port that <strong>Tomcat</strong> is listening on. &nbsp;That port is set in the Tomcat configuration file.</li>
+<li>/rest = the <strong>Context Root</strong> of your project</li>
+<li>/thisthat = your <strong>web.xml</strong> <strong>url-pattern</strong> node</li>
+<li>hello = the <strong>Path</strong> annotation in MyJerseyPage.java</li>
+</ol>
+</li>
+<li>Browse to the url of your hello page, for example: <a href="http://localhost:8080/rest/thisthat/hello">http://localhost:8080/rest/thisthat/hello</a></li>
+<li>The browser should show the response from your MyJerseyPage.java class: “Hello from Jersey”</li>
+</ol>
+<p><strong>Add an HTML page at the root of your project</strong></p>
+<p>Suppose you want to add a regular HTML page, titled login.html, to your Jersey project.</p>
+<ol>
+<li>In <strong>Eclipse</strong>, in the Project Explorer, expand your project tree until <strong>src/main/webapp</strong> is visible</li>
+<li>Right-click on <strong>src/main/webapp</strong> and select <strong>New / HTML file</strong></li>
+<li>For <strong>File name</strong>, type <strong>login.html</strong>, or whatever you wish this page ot be called (ending in .html)</li>
+<li>Click <strong>Next</strong></li>
+<li>Click <strong>Finish</strong></li>
+<li>Edit the resulting file in any way you like. In particular, add an HTML body</li>
+<li><strong>Save</strong> the file. &nbsp;You might notice that you can do this while the test server is running; the server automatically updates</li>
+<li>The new file’s URL is composed of:
+<ol>
+<li>http://localhost:8080 and /rest as above</li>
+<li>login.html = the <strong>filename</strong> in the tree rooted in your <strong>webapp folder</strong></li>
+</ol>
+</li>
+<li>Browse to the Url of your new page. For example <a href="http://localhost:8080/rest/login.html">http://localhost:8080/rest/login.html</a></li>
+<li>The browser should present your new HTML page’s content.</li>
+</ol>
+<p><strong>Add more Java classes that respond to more urls, and add more HTML pages</strong></p>
+<p>Each new class you create will respond to an URL (or set of URLs) under http://localhost:8080/rest/thisthat/</p>
+<p>Each HTML page you add in the tree under webapp will appear at the corresponding URL. For example, webapp/statistics/counts.html would appear as http://localhost:L8080/rest/statistics/counts.html</p>
+<p>Jersey supports a wide variety of URLs, HTTP session variables, and HTTP query parameters. See the <a href="https://jersey.java.net/">Jersey documentation</a> for what you can do in a Jersey class.</p>
+<p><strong>Deploy to a production Tomcat server</strong></p>
+<p>Tomcat projects are deployed in a Web ARchive, aka a .war file.</p>
+<p>To create a .war file from your project:</p>
+<ol>
+<li>In <strong>Eclipse</strong>, in the Project Explorer, <strong>right-click</strong> on your <strong>project</strong> name and select <strong>Export</strong> / <strong>WAR file</strong></li>
+<li>For <strong>Destination</strong>, click the <strong>Browse</strong> button</li>
+<li><strong>Navigate</strong> to the folder you wish to save the .war file to, choose what to name it, and click <strong>Save</strong></li>
+<li>Click (<strong>check</strong>) <strong>Export Source Files</strong>. Without this option, your html files would not be included in the .war file.</li>
+<li>TODO see what we need to do to fix the problem we see when the .war file is deployed.</li>
+<li>Click <strong>Finish</strong></li>
+<li>Follow the section&nbsp;labeled&nbsp;<strong>To Add a Project .war file to your server</strong>&nbsp;near the bottom of&nbsp;<a href="http://needhamia.com/?page_id=354">Install and Configure Tomcat</a></li>
+</ol>
+<p>&nbsp;</p>
+<p>Many Thanks to:</p>
+<ul>
+<li><a href="http://naptimecoder.blogspot.com/2012/03/how-to-create-web-service-using-jersey.html">How to create a web service using Jersey, Maven and Tomcat</a>&nbsp;for the basic pattern of using Jersey + Maven + Tomcat</li>
+<li>Many <strong><a href="http://stackoverflow.com/">Stack Overflow</a></strong> contributors who explained how to fix the&nbsp;various error messages I got along the way. I’ve up-voted those answers.</li>
+</ul>
+	</div><!-- .entry-content -->
+</article><!-- #post-## -->
+
+		</div><!-- #content -->
+	</div><!-- #primary -->
+	</div><!-- #main-content -->
+
+<div id="secondary">
+		<h2 class="site-description">Et proiectus est talpa – "and the mole was cast out"</h2>
+	
+	
+		<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+		<aside id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="https://needhamia.com/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search …" value="" name="s">
+				</label>
+				<input type="submit" class="search-submit" value="Search">
+			</form></aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h1 class="widget-title">Recent Posts</h1>		<ul>
+											<li>
+					<a href="https://needhamia.com/clock-repair-101-making-sense-of-the-time-gears/">Clock Repair 101: Making sense of the Time Gears</a>
+									</li>
+											<li>
+					<a href="https://needhamia.com/clock-repair-101-i-finished-cleaning-the-clock/">Clock Repair 101: I finished “Cleaning” the clock</a>
+									</li>
+											<li>
+					<a href="https://needhamia.com/clock-repair-101-cleaning-or-something-approaching-it/">Clock Repair 101: Cleaning (or something approaching it)</a>
+									</li>
+											<li>
+					<a href="https://needhamia.com/clock-repair-101-disassembly-destruction/">Clock Repair 101: Disassembly / Destruction</a>
+									</li>
+											<li>
+					<a href="https://needhamia.com/clock-repair-101-a-time-bomb-waiting-to-go-off/">Clock Repair 101: A time bomb waiting to go off</a>
+									</li>
+					</ul>
+		</aside><aside id="recent-comments-2" class="widget widget_recent_comments"><h1 class="widget-title">Recent Comments</h1><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">bneedhamia</span> on <a href="https://needhamia.com/a-little-info-on-using-ssh-in-your-web-site/#comment-44">A little info on using SSL in your web site</a></li><li class="recentcomments"><span class="comment-author-link">bneedhamia</span> on <a href="https://needhamia.com/tim-hunkin-brilliant-artist-engineer-and-maker/#comment-9">Tim Hunkin: Brilliant artist, engineer, and maker</a></li><li class="recentcomments"><span class="comment-author-link">A Concerned Citizen</span> on <a href="https://needhamia.com/needhamia-literally-joins-the-21st-century/#comment-2">Needhamia literally joins the 21st Century</a></li></ul></aside><aside id="archives-2" class="widget widget_archive"><h1 class="widget-title">Archives</h1>		<ul>
+			<li><a href="https://needhamia.com/2018/10/">October 2018</a></li>
+	<li><a href="https://needhamia.com/2018/08/">August 2018</a></li>
+	<li><a href="https://needhamia.com/2018/07/">July 2018</a></li>
+	<li><a href="https://needhamia.com/2018/03/">March 2018</a></li>
+	<li><a href="https://needhamia.com/2018/01/">January 2018</a></li>
+	<li><a href="https://needhamia.com/2017/11/">November 2017</a></li>
+	<li><a href="https://needhamia.com/2017/10/">October 2017</a></li>
+	<li><a href="https://needhamia.com/2017/09/">September 2017</a></li>
+	<li><a href="https://needhamia.com/2017/06/">June 2017</a></li>
+	<li><a href="https://needhamia.com/2017/03/">March 2017</a></li>
+	<li><a href="https://needhamia.com/2016/12/">December 2016</a></li>
+	<li><a href="https://needhamia.com/2016/11/">November 2016</a></li>
+	<li><a href="https://needhamia.com/2016/10/">October 2016</a></li>
+	<li><a href="https://needhamia.com/2016/09/">September 2016</a></li>
+	<li><a href="https://needhamia.com/2016/07/">July 2016</a></li>
+	<li><a href="https://needhamia.com/2016/05/">May 2016</a></li>
+	<li><a href="https://needhamia.com/2016/04/">April 2016</a></li>
+	<li><a href="https://needhamia.com/2016/02/">February 2016</a></li>
+	<li><a href="https://needhamia.com/2016/01/">January 2016</a></li>
+	<li><a href="https://needhamia.com/2015/12/">December 2015</a></li>
+	<li><a href="https://needhamia.com/2015/11/">November 2015</a></li>
+	<li><a href="https://needhamia.com/2015/10/">October 2015</a></li>
+	<li><a href="https://needhamia.com/2015/08/">August 2015</a></li>
+	<li><a href="https://needhamia.com/2015/07/">July 2015</a></li>
+	<li><a href="https://needhamia.com/2015/05/">May 2015</a></li>
+	<li><a href="https://needhamia.com/2015/04/">April 2015</a></li>
+	<li><a href="https://needhamia.com/2015/03/">March 2015</a></li>
+	<li><a href="https://needhamia.com/2015/01/">January 2015</a></li>
+	<li><a href="https://needhamia.com/2014/12/">December 2014</a></li>
+	<li><a href="https://needhamia.com/2014/11/">November 2014</a></li>
+	<li><a href="https://needhamia.com/2014/10/">October 2014</a></li>
+	<li><a href="https://needhamia.com/2014/08/">August 2014</a></li>
+		</ul>
+		</aside><aside id="categories-2" class="widget widget_categories"><h1 class="widget-title">Categories</h1>		<ul>
+	<li class="cat-item cat-item-72"><a href="https://needhamia.com/category/genealogy/">Genealogy</a>
+</li>
+	<li class="cat-item cat-item-90"><a href="https://needhamia.com/category/history/">history</a>
+</li>
+	<li class="cat-item cat-item-93"><a href="https://needhamia.com/category/making/">Making</a>
+</li>
+	<li class="cat-item cat-item-77"><a href="https://needhamia.com/category/media/">Media</a>
+</li>
+	<li class="cat-item cat-item-71"><a href="https://needhamia.com/category/projects/">Projects</a>
+</li>
+	<li class="cat-item cat-item-73"><a href="https://needhamia.com/category/technology-tips/">Technology Tips</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="https://needhamia.com/category/uncategorized/">Uncategorized</a>
+</li>
+		</ul>
+</aside><aside id="meta-2" class="widget widget_meta"><h1 class="widget-title">Meta</h1>			<ul>
+						<li><a href="https://needhamia.com/wp-login.php">Log in</a></li>
+			<li><a href="https://needhamia.com/feed/">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="https://needhamia.com/comments/feed/">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="https://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>			</ul>
+			</aside>	</div><!-- #primary-sidebar -->
+	</div><!-- #secondary -->
+
+		</div><!-- #main -->
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			
+			<div class="site-info">
+								<a class="privacy-policy-link" href="https://needhamia.com/sample-page/privacy-policy/">Privacy Policy</a><span role="separator" aria-hidden="true"></span>				<a href="https://wordpress.org/" class="imprint">
+					Proudly powered by WordPress				</a>
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+	<script type="text/javascript" src="./Create a Jersey web project using Maven, Tomcat, and Eclipse _ The Independent Nation of Needhamia_files/functions.js.download"></script>
+<script type="text/javascript" src="./Create a Jersey web project using Maven, Tomcat, and Eclipse _ The Independent Nation of Needhamia_files/wp-embed.min.js.download"></script>
+
+
+</body></html>
