@@ -4,9 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.capgemini.de.insightsanddata.dsc.kerasmodelstoproduction</groupId>
-    <artifactId>websites</artifactId>
+    <artifactId>aiModelsAtScaleOnRestfulSvcs</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1</version>
-    <name>websites</name>
+    <name>aiModelsAtScaleOnRestfulSvcs</name>
 
+    <modules>
+        <module>../aiModelsAtScaleOnRestfulJavaSeSvcs</module>
+        <module>../aiModelsAtScaleOnRestfulJeeSvcs</module>
+    </modules>
 </project>
