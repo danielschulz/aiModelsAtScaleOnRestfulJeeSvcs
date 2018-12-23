@@ -31,6 +31,9 @@ javaRestfulSvcs/aiModelsAtScaleOnRestfulJeeSvcs/target/maven-archiver/**
 javaRestfulSvcs/aiModelsAtScaleOnRestfulJavaSeSvcs/target/
 javaRestfulSvcs/aiModelsAtScaleOnRestfulJavaSeSvcs/target/maven-archiver/**
 
+javaRestfulSvcs/aiModelsAtScaleOnRestfulScala/target/
+javaRestfulSvcs/aiModelsAtScaleOnRestfulScala/target/maven-archiver/**
+
 # Compiled class file
 *.class
 

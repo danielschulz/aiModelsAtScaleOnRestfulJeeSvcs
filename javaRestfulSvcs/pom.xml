@@ -13,6 +13,7 @@
     <modules>
         <module>aiModelsAtScaleOnRestfulJavaSeSvcs</module>
         <module>aiModelsAtScaleOnRestfulJeeSvcs</module>
+        <module>aiModelsAtScaleOnRestfulScalaSvcs</module>
     </modules>
     
 </project>
