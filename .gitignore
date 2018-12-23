@@ -25,6 +25,9 @@ hs_err_pid*
 aiModelsAtScaleOnRestfulJeeSvcs/target
 websources/websources.iml
 
+javaRestfulSvcs/aiModelsAtScaleOnRestfulJeeSvcs/target/
+javaRestfulSvcs/aiModelsAtScaleOnRestfulJavaSeSvcs/target/
+
 # Compiled class file
 *.class
 
