@@ -12,7 +12,7 @@
     <artifactId>aiModelsAtScaleOnRestfulJee</artifactId>
     <packaging>war</packaging>
     <version>${parent.version}</version>
-    <name>aiModelsAtScaleOnRestfulJee</name>
+    <name>${artifactId}</name>
 
     <build>
         <finalName>aiModelsAtScaleOnRestfulJeeSvcs</finalName>

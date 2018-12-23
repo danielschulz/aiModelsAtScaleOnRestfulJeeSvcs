@@ -12,7 +12,7 @@
     <artifactId>aiModelsAtScaleOnRestfulJavaSe</artifactId>
     <packaging>jar</packaging>
     <version>${parent.version}</version>
-    <name>aiModelsAtScaleOnRestfulJavaSe</name>
+    <name>${artifactId}</name>
 
     <!-- add Java snapshot repository for Maven -->
     <repositories>
